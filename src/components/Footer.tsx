@@ -43,8 +43,13 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const linkCls = "inline-flex min-h-8 items-center text-[13px] text-white/70 transition-colors hover:text-[#C51E28]";
 
   return (
-    <footer className="bg-[#111417] text-white">
-      <div className="container-x py-16 lg:py-20">
+    <footer className="relative bg-[#111417] text-white">
+      {/* Architectural Curved Shoulder Transition from Canvas to Dark Footer */}
+      <div className="relative h-10 sm:h-14 w-full overflow-hidden bg-[#FBFBFA]">
+        <div className="absolute inset-0 bg-[#111417] rounded-tl-[48px] sm:rounded-tl-[72px] rtl:rounded-tl-none rtl:rounded-tr-[48px] rtl:sm:rounded-tr-[72px]" />
+      </div>
+
+      <div className="container-x pb-16 pt-6 lg:pb-20 lg:pt-8">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10">
           {/* Left Column: Logo, Description, and Socials */}
           <div data-reveal="up" style={stagger(0)} className="sm:col-span-2 lg:col-span-5">

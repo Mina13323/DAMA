@@ -36,16 +36,25 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
               <span className="h-px w-5 bg-[#C51E28]" aria-hidden />
             </div>
 
-            {/* Display Headline */}
+            {/* Display Headline: 4 editorial lines matching mockup */}
             <h1
               id="hero-title"
-              className="enter-line mt-6 font-display text-[clamp(2.75rem,5.2vw,4.75rem)] font-normal leading-[1.06] tracking-tight text-[#14171A]"
+              className="enter-line mt-6 font-display text-[clamp(2.75rem,5.2vw,4.75rem)] font-normal leading-[1.05] tracking-tight text-[#14171A]"
               style={{ animationDelay: "200ms" }}
             >
-              <span className="block text-[#14171A]">{t.titleLines[0]}</span>
-              <span className="mt-1 block italic font-normal text-[#C51E28]">
-                {t.titleLines[1]?.replace(/\*/g, "")}
-              </span>
+              {locale === "ar" ? (
+                <>
+                  <span className="block text-[#14171A]">حياة راقية.</span>
+                  <span className="mt-1 block italic text-[#C51E28]">صُممت لتنتمي.</span>
+                </>
+              ) : (
+                <>
+                  <span className="block text-[#14171A]">Elevated</span>
+                  <span className="block text-[#14171A]">living.</span>
+                  <span className="block italic text-[#C51E28]">Designed</span>
+                  <span className="block italic text-[#C51E28]">to belong.</span>
+                </>
+              )}
             </h1>
 
             {/* Supporting Paragraph */}
@@ -67,7 +76,9 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
                 className="group inline-flex min-h-12 items-center gap-3 rounded-full bg-[#C51E28] px-7 py-3.5 text-[13px] font-semibold tracking-wide text-white shadow-md transition-all duration-200 hover:bg-[#9F121A] hover:shadow-lg hover:-translate-y-0.5"
               >
                 <span>{t.cta}</span>
-                <ArrowRight aria-hidden className="flip-rtl size-4 transition-transform duration-200 ease-soft group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-white/20 text-white transition-transform duration-200 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5">
+                  <ArrowRight aria-hidden className="flip-rtl size-3.5" />
+                </span>
               </Link>
 
               {/* Secondary Play Button: The DAMA Story */}
@@ -85,25 +96,32 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
 
           {/* Right Column: Architectural Hero Showcase with Iconic Red Organic Shapes */}
           <div className="relative lg:col-span-6 xl:col-span-6">
-            {/* Top Right Stacked Vertical Badge */}
-            <div className="absolute -top-10 end-4 z-20 hidden text-right sm:block">
-              {t.badgeLines?.map((line, idx) => (
-                <p key={idx} className="text-[9.5px] font-bold tracking-[0.24em] text-[#C51E28] uppercase opacity-90 leading-tight">
-                  {line}
-                </p>
-              ))}
+            {/* Top Right Stacked Vertical Badge with Red Bar */}
+            <div className="absolute -top-10 end-2 z-20 hidden items-center gap-2.5 sm:flex">
+              <span className="h-10 w-0.5 bg-[#C51E28]" aria-hidden />
+              <div className="text-[9.5px] font-bold tracking-[0.24em] text-[#C51E28] uppercase opacity-90 leading-tight">
+                {t.badgeLines?.map((line, idx) => (
+                  <p key={idx}>{line}</p>
+                ))}
+              </div>
             </div>
+
+            {/* Organic Soft-Stone Backdrop Framing the Image */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -inset-4 sm:-inset-6 -z-20 rounded-[44px] bg-[#EDEBE5]/70 backdrop-blur-xs"
+            />
 
             {/* Red Accent 1: Flowing Organic Curved Red Arch behind Top-Left Corner */}
             <div
               aria-hidden
-              className="pointer-events-none absolute -start-8 -top-10 -z-10 h-72 w-52 sm:h-96 sm:w-64 rounded-t-full rounded-bl-[120px] bg-[#C51E28] transition-transform duration-700 ease-soft"
+              className="pointer-events-none absolute -start-8 -top-10 -z-10 h-72 w-56 sm:h-96 sm:w-68 rounded-t-full rounded-bl-[140px] bg-[#C51E28] shadow-lg transition-transform duration-700 ease-soft"
             />
 
-            {/* Red Accent 2: Semicircle peeking from Right Edge */}
+            {/* Red Accent 2: Semicircle / Vertical Pill peeking from Right Edge */}
             <div
               aria-hidden
-              className="pointer-events-none absolute -end-6 top-1/4 -z-10 h-44 w-14 rounded-s-full bg-[#C51E28]"
+              className="pointer-events-none absolute -end-5 sm:-end-6 top-1/4 -z-10 h-40 w-9 sm:w-10 rounded-full bg-[#C51E28] shadow-md"
             />
 
             {/* Main Architectural Image Card */}
@@ -120,7 +138,7 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
               </div>
 
               {/* Bottom Carousel Controls Bar: < 01 / 03 > */}
-              <div className="absolute bottom-4 end-4 z-20 flex items-center gap-3 rounded-full border border-white/60 bg-white/90 px-3.5 py-1.5 shadow-md backdrop-blur-md">
+              <div className="absolute bottom-4 end-4 z-20 flex items-center gap-3 rounded-full border border-white/70 bg-white/95 px-4 py-1.5 shadow-md backdrop-blur-md">
                 <button
                   type="button"
                   onClick={prevSlide}

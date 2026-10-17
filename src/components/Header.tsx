@@ -24,8 +24,8 @@ export function Header({ dict, locale }: { dict: Dictionary; locale: Locale }) {
     { href: base, label: dict.nav.home, active: isHome },
     { href: `${base}/about`, label: dict.nav.about, active: pathname === `${base}/about` },
     { href: `${base}/projects`, label: dict.nav.projects, active: pathname.startsWith(`${base}/projects`) },
-    { href: `${base}/news`, label: dict.nav.news, active: pathname.startsWith(`${base}/news`) },
-    { href: `${base}/careers`, label: dict.nav.careers, active: pathname === `${base}/careers` },
+    { href: `${base}#lifestyle`, label: dict.nav.lifestyle, active: false },
+    { href: `${base}#sustainability`, label: dict.nav.sustainability, active: false },
     { href: `${base}/contact`, label: dict.nav.contact, active: pathname === `${base}/contact` },
   ];
 

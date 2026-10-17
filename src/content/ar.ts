@@ -19,8 +19,10 @@ export const ar: Dictionary = {
   },
   nav: {
     home: "الرئيسية",
-    about: "من نحن",
-    projects: "المشروعات",
+    about: "عن داما",
+    projects: "مشروعاتنا",
+    lifestyle: "تجربة العيش",
+    sustainability: "الاستدامة",
     news: "الأخبار والفعاليات",
     careers: "الوظائف",
     contact: "تواصل معنا",

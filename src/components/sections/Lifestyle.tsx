@@ -26,7 +26,7 @@ export function Lifestyle({ dict, locale }: { dict: Dictionary; locale: Locale }
       {/* Red Accent: Half-circle peeking from the far-right edge */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -end-7 top-1/2 -z-10 h-52 w-16 -translate-y-1/2 rounded-s-full bg-[#C51E28] rtl:-scale-x-100"
+        className="pointer-events-none absolute -end-3 sm:-end-4 top-2/3 -z-10 h-48 sm:h-56 w-12 sm:w-16 -translate-y-1/2 rounded-s-full bg-[#C51E28] shadow-md rtl:-scale-x-100"
       />
 
       <div className="container-x">
@@ -60,7 +60,7 @@ export function Lifestyle({ dict, locale }: { dict: Dictionary; locale: Locale }
             <div className="mt-5">
               <Link
                 href={`/${locale}/projects`}
-                className="group inline-flex items-center gap-2 text-[13px] font-bold tracking-wide text-[#14171A] transition-colors hover:text-[#C51E28]"
+                className="group inline-flex items-center gap-2 border-b-2 border-[#C51E28] pb-1 text-[13px] font-bold tracking-wide text-[#14171A] transition-colors hover:text-[#C51E28]"
               >
                 <span>{t.cta}</span>
                 <ArrowRight aria-hidden className="flip-rtl size-4 transition-transform duration-200 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 text-[#C51E28]" />
@@ -76,7 +76,7 @@ export function Lifestyle({ dict, locale }: { dict: Dictionary; locale: Locale }
               key={card.title}
               data-reveal="card"
               style={stagger(2 + i)}
-              className="group relative overflow-hidden rounded-[28px] sm:rounded-[36px] border border-[#ECEAE5] bg-white shadow-xs transition-all duration-300 hover:shadow-lg"
+              className="group relative overflow-hidden rounded-[28px] sm:rounded-[36px] border border-[#ECEAE5] bg-white shadow-xs transition-all duration-300 hover:shadow-xl"
             >
               <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full">
                 <Image
@@ -86,16 +86,16 @@ export function Lifestyle({ dict, locale }: { dict: Dictionary; locale: Locale }
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover object-center transition-transform duration-[1.2s] ease-soft group-hover:scale-105"
                 />
-                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
               </div>
 
-              {/* Floating Dark Pill Action Overlay */}
-              <div className="absolute inset-x-5 bottom-5 flex items-center justify-between gap-3 rounded-full bg-[#111417]/90 px-6 py-3 text-white backdrop-blur-md shadow-lg transition-transform duration-300 ease-soft group-hover:-translate-y-1">
-                <span className="text-[13px] font-semibold tracking-wide">
+              {/* Direct Card Overlay matching mockup */}
+              <div className="absolute inset-x-6 bottom-6 sm:inset-x-8 sm:bottom-8 flex items-end justify-between gap-4">
+                <h3 className="font-display text-[24px] sm:text-[28px] font-normal text-white leading-tight drop-shadow-sm">
                   {card.title}
-                </span>
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-white/20 text-white transition-transform duration-200 group-hover:bg-[#C51E28]">
-                  <ArrowRight aria-hidden className="flip-rtl size-3.5" />
+                </h3>
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-white/70 bg-black/20 text-white backdrop-blur-xs transition-all duration-200 group-hover:scale-110 group-hover:bg-[#C51E28] group-hover:border-[#C51E28]">
+                  <ArrowRight aria-hidden className="flip-rtl size-4.5" />
                 </span>
               </div>
             </div>

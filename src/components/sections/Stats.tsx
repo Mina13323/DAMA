@@ -44,25 +44,20 @@ export function Stats({ dict, band = false }: { dict: Dictionary; band?: boolean
               })}
             </div>
 
-            {/* 5th Column: Red Architectural Showcase Card */}
+            {/* 5th Column: Red Architectural Showcase Leaf-Shaped Card */}
             <div
               data-reveal="fade"
               style={stagger(4)}
-              className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-[#C51E28] sm:aspect-auto sm:h-28 lg:col-span-2 lg:h-32 shadow-xs group"
+              className="relative aspect-[16/9] w-full overflow-hidden rounded-tl-[3.25rem] rounded-br-[3.25rem] rounded-tr-xl rounded-bl-xl bg-[#C51E28] sm:aspect-auto sm:h-28 lg:col-span-2 lg:h-32 shadow-sm group"
             >
               <Image
                 src={images.about.who}
                 alt="Architectural structure"
                 fill
                 sizes="(min-width: 1024px) 200px, 100vw"
-                className="object-cover opacity-35 mix-blend-multiply transition-transform duration-700 ease-soft group-hover:scale-105"
+                className="object-cover opacity-40 mix-blend-multiply transition-transform duration-700 ease-soft group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#9F121A]/80 to-transparent" />
-              <div className="absolute inset-0 flex items-center justify-center p-3 text-center">
-                <span className="font-display text-sm font-semibold italic text-white tracking-wide">
-                  DAMA Living
-                </span>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#8E0E16]/80 via-transparent to-transparent" />
             </div>
           </div>
         </div>

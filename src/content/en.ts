@@ -18,8 +18,10 @@ export const en = {
   },
   nav: {
     home: "Home",
-    about: "About Us",
-    projects: "Projects",
+    about: "About",
+    projects: "Our Projects",
+    lifestyle: "Living Experience",
+    sustainability: "Sustainability",
     news: "News & Events",
     careers: "Careers",
     contact: "Contact",

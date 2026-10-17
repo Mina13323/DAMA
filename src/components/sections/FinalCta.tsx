@@ -8,7 +8,7 @@ export function FinalCta({ dict, locale }: { dict: Dictionary; locale: Locale })
   const t = dict.cta;
 
   return (
-    <section aria-labelledby="cta-title" className="relative bg-[#FBFBFA] py-14 sm:py-20 border-t border-[#ECEAE5]">
+    <section aria-labelledby="cta-title" className="relative bg-[#FBFBFA] py-14 sm:py-20">
       <div className="container-x">
         <div
           data-reveal="card"

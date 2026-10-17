@@ -13,20 +13,20 @@ export function Values({ dict }: { dict: Dictionary; locale?: Locale }) {
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-10 xl:gap-14">
           {/* Left Column: Nature Arch Photo with Red Quarter-Circle Crescent Accent */}
           <div data-reveal="card" className="relative flex justify-center lg:col-span-4">
-            {/* The Signature Red Crescent / Semi-Circle Accent */}
+            {/* The Signature Red Crescent / Semi-Circle Accent resting atop the arch */}
             <div
               aria-hidden
-              className="pointer-events-none absolute -top-5 end-6 sm:end-12 z-10 size-24 sm:size-28 rounded-tr-full rounded-tl-full bg-[#C51E28] shadow-md rtl:-scale-x-100"
+              className="pointer-events-none absolute -top-6 start-1/2 z-10 h-16 sm:h-20 w-32 sm:w-40 -translate-x-1/2 rounded-t-full bg-[#C51E28] shadow-md"
             />
 
             {/* Arch-shaped container */}
-            <div className="relative aspect-[3/4] w-full max-w-[320px] overflow-hidden rounded-t-full rounded-b-[24px] border border-[#ECEAE5] bg-white shadow-xs">
+            <div className="relative aspect-[3/4] w-full max-w-[320px] overflow-hidden rounded-t-full rounded-b-[28px] border border-[#ECEAE5] bg-white shadow-xs">
               <Image
                 src={images.values[0] || images.lifestyle}
                 alt="Natural foliage and architecture"
                 fill
                 sizes="(min-width: 1024px) 30vw, 100vw"
-                className="object-cover object-center transition-transform duration-[1.2s] ease-soft hover:scale-105"
+                className="object-cover grayscale contrast-125 object-center transition-transform duration-[1.2s] ease-soft hover:scale-105"
               />
             </div>
           </div>
@@ -46,7 +46,7 @@ export function Values({ dict }: { dict: Dictionary; locale?: Locale }) {
               id="commitment-title"
               className="mt-5 font-display text-[clamp(2.2rem,3.5vw,3.25rem)] font-normal leading-[1.14] tracking-tight text-[#14171A]"
             >
-              <span>{t.titleLines[0]} </span>
+              <span className="block">{t.titleLines[0]}</span>
               <span className="block mt-1 italic text-[#C51E28]">
                 {t.titleLines[1]?.replace(/\*/g, "")}
               </span>
@@ -58,21 +58,23 @@ export function Values({ dict }: { dict: Dictionary; locale?: Locale }) {
             </p>
           </div>
 
-          {/* Right Column: Stacked Pillar Labels with Clean Dividing Rules */}
+          {/* Right Column: Stacked Pillar Labels in Warm Taupe Capsule with Red Dash */}
           <div data-reveal="fade" style={stagger(2)} className="lg:col-span-3">
-            <div className="rounded-[24px] border border-[#ECEAE5] bg-white p-6 sm:p-8 shadow-2xs">
-              <ul className="flex flex-col divide-y divide-[#ECEAE5]">
-                {stackedItems.map((item, idx) => (
+            <div className="rounded-[36px] border border-[#ECEAE5] bg-[#EDEBE5]/85 p-8 text-center shadow-xs">
+              <ul className="flex flex-col gap-5">
+                {stackedItems.map((item) => (
                   <li
                     key={item}
-                    className={`py-4 text-[11.5px] font-bold tracking-[0.26em] text-[#14171A] uppercase transition-colors hover:text-[#C51E28] ${
-                      idx === 0 ? "pt-0" : ""
-                    } ${idx === stackedItems.length - 1 ? "pb-0" : ""}`}
+                    className="text-[12px] font-bold tracking-[0.28em] text-[#14171A] uppercase transition-colors hover:text-[#C51E28]"
                   >
                     {item}
                   </li>
                 ))}
               </ul>
+              {/* Bottom Red Dash */}
+              <div className="mt-6 flex justify-center">
+                <span className="h-0.5 w-7 bg-[#C51E28]" aria-hidden />
+              </div>
             </div>
           </div>
         </div>
