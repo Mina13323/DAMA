@@ -8,13 +8,16 @@
  *    so nothing invented is ever shown to visitors.
  */
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const asset = (path: string) => `${basePath}${path}`;
+
 const unsplash = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=2400&q=80`;
 
 export const images = {
-  hero: "/images/hero-dama.jpg",
-  story: "/images/lifestyle-interior.jpg",
-  lifestyle: "/images/lifestyle-terrace.jpg",
+  hero: asset("/images/hero-dama.jpg"),
+  story: asset("/images/lifestyle-interior.jpg"),
+  lifestyle: asset("/images/lifestyle-terrace.jpg"),
   lifestyleThemes: [
     unsplash("photo-1576013551627-0cc20b96c2a7"),
     unsplash("photo-1600210492486-724fe5c67fb0"),
@@ -31,14 +34,14 @@ export const images = {
     unsplash("photo-1531058020387-3be344556be6"),
     unsplash("photo-1600566753190-17f0baa2a6c3"),
   ],
-  cta: "/images/cta-dama.jpg",
+  cta: asset("/images/cta-dama.jpg"),
   about: {
-    hero: "/images/about-dama.jpg",
+    hero: asset("/images/about-dama.jpg"),
     who: unsplash("photo-1512915922686-57c11dde9b6b"),
-    story: "/images/lifestyle-interior.jpg",
+    story: asset("/images/lifestyle-interior.jpg"),
     vision: unsplash("photo-1564013799919-ab600027ffc6"),
-    mission: "/images/lifestyle-terrace.jpg",
-    cta: "/images/cta-dama.jpg",
+    mission: asset("/images/lifestyle-terrace.jpg"),
+    cta: asset("/images/cta-dama.jpg"),
   },
 } as const;
 

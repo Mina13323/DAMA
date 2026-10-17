@@ -7,6 +7,9 @@
  */
 import type { Locale } from "./index";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const asset = (path: string) => `${basePath}${path}`;
+
 const img = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=2400&q=80`;
 
 export type ProjectSlug = "rwasin" | "dama-residence" | "dama-view";
@@ -49,9 +52,9 @@ export const projects: Project[] = [
     slug: "rwasin",
     name: "Rwasin",
     categories: ["residential", "villas", "apartments"],
-    image: "/images/project-rwasin.jpg",
+    image: asset("/images/project-rwasin.jpg"),
     images: {
-      overview: "/images/project-rwasin.jpg",
+      overview: asset("/images/project-rwasin.jpg"),
       lifestyle: [
         img("photo-1520250497591-112f2f40a3f4"),
         img("photo-1576013551627-0cc20b96c2a7"),
@@ -142,9 +145,9 @@ export const projects: Project[] = [
     slug: "dama-residence",
     name: "DAMA Residence",
     categories: ["residential", "apartments"],
-    image: "/images/project-residence.jpg",
+    image: asset("/images/project-residence.jpg"),
     images: {
-      overview: "/images/project-residence.jpg",
+      overview: asset("/images/project-residence.jpg"),
       lifestyle: [
         img("photo-1560448204-e02f11c3d0e2"),
         img("photo-1600607687939-ce8a6c25118c"),
@@ -228,9 +231,9 @@ export const projects: Project[] = [
     slug: "dama-view",
     name: "DAMA View",
     categories: ["residential", "villas"],
-    image: "/images/project-view.jpg",
+    image: asset("/images/project-view.jpg"),
     images: {
-      overview: "/images/project-view.jpg",
+      overview: asset("/images/project-view.jpg"),
       lifestyle: [
         img("photo-1564013799919-ab600027ffc6"),
         img("photo-1416331108676-a22ccb276e35"),

@@ -1,15 +1,15 @@
 import type { NextConfig } from "next";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const nextConfig: NextConfig = {
-  // A lockfile exists in a parent folder; pin tracing to this project.
+  output: "export",
+  basePath: basePath || undefined,
+  trailingSlash: true,
   outputFileTracingRoot: process.cwd(),
   images: {
-    formats: ["image/avif", "image/webp"],
-    // Temporary photography source. Replace with official DAMA assets in /public when available.
+    unoptimized: true,
     remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
-  },
-  async redirects() {
-    return [{ source: "/", destination: "/en", permanent: false }];
   },
 };
 
