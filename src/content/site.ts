@@ -22,6 +22,12 @@ export const images = {
     asset("/images/about-dama.jpg"),
   ],
   featured: asset("/images/about-dama.jpg"),
+  courtyard: asset("/images/story-courtyard.webp"),
+  courtyardTree: asset("/images/story-detail-tree.webp"),
+  courtyardPalms: asset("/images/story-detail-palms.webp"),
+  rawasinAerial: asset("/images/rawasin-aerial.webp"),
+  lifestyleEntrance: asset("/images/lifestyle-entrance.webp"),
+  lifestyleTree: asset("/images/lifestyle-tree.webp"),
   story: asset("/images/lifestyle-interior.jpg"),
   lifestyle: asset("/images/lifestyle-terrace.jpg"),
   lifestyleThemes: [

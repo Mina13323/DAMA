@@ -69,19 +69,19 @@ export function Header({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           solid ? "bg-white/90 py-3 shadow-[0_1px_0_var(--color-line)] backdrop-blur-md" : "py-5 lg:py-6"
         }`}
       >
-        <div className="container-x flex items-center justify-between gap-6">
+        <div className="flex items-center justify-between gap-6 px-4 sm:px-8 lg:pe-[calc(var(--u)*5.1)] lg:ps-[calc(var(--u)*6.8)]">
           <Link href={base} aria-label={dict.a11y.home} className="shrink-0">
             <Logo />
           </Link>
 
           <nav aria-label={dict.a11y.primaryNav} className="hidden lg:block">
-            <ul className="flex items-center gap-8 xl:gap-10">
+            <ul className="flex items-center gap-5 xl:gap-10">
               {links.map((l) => (
                 <li key={l.label}>
                   <Link
                     href={l.href}
                     aria-current={l.active ? "page" : undefined}
-                    className="group relative block py-2 text-[12.5px] font-medium whitespace-nowrap text-[#14171A]/70 transition-colors hover:text-[#C51E28] aria-[current=page]:font-semibold aria-[current=page]:text-[#14171A]"
+                    className="group relative block py-2 text-[12px] font-medium whitespace-nowrap text-[#14171A]/70 xl:text-[12.5px] transition-colors hover:text-[#C51E28] aria-[current=page]:font-semibold aria-[current=page]:text-[#14171A]"
                   >
                     {l.active && (
                       <span
@@ -120,7 +120,7 @@ export function Header({ dict, locale }: { dict: Dictionary; locale: Locale }) {
 
             <Link
               href={`${base}/contact`}
-              className="group ms-2 hidden min-h-12 items-center gap-5 rounded-full bg-[#16191C] py-1.5 ps-6 pe-1.5 text-[12.5px] font-medium text-white shadow-[0_8px_20px_-8px_rgba(20,23,26,0.45)] transition-all duration-200 hover:bg-[#23292F] sm:inline-flex"
+              className="group ms-1 hidden min-h-12 items-center gap-3 whitespace-nowrap rounded-full xl:ms-2 xl:gap-5 bg-[#16191C] py-1.5 ps-6 pe-1.5 text-[12.5px] font-medium text-white shadow-[0_8px_20px_-8px_rgba(20,23,26,0.45)] transition-all duration-200 hover:bg-[#23292F] sm:inline-flex"
             >
               <span>{dict.getInTouch}</span>
               <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#C51E28] text-white transition-transform duration-200 group-hover:scale-105">

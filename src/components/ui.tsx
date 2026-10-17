@@ -119,23 +119,31 @@ export function Breadcrumbs({
 }
 
 export function Logo({ tone = "dark" }: { tone?: "dark" | "light" }) {
-  const isDark = tone === "dark";
-  const textColor = isDark ? "text-[#14171A]" : "text-white";
+  const textColor = tone === "dark" ? "text-[#14171A]" : "text-white";
   return (
-    <div className={`flex items-center gap-2.5 ${textColor}`} dir="ltr">
-      {/* Architectural "D" mark: roof slope, solid bowl and a doorway notch */}
-      <svg viewBox="0 0 32 32" className="size-8 shrink-0" aria-hidden>
-        <path
-          fill="currentColor"
-          fillRule="evenodd"
-          d="M3 29V13L13 3v6h5c6.1 0 11 4.5 11 10s-4.9 10-11 10H3Zm9-7h5v7h-5v-7Z"
-        />
-      </svg>
-      <div className="flex flex-col leading-none">
-        <span className="font-sans text-[21px] font-semibold tracking-[0.04em]">DAMA</span>
-        <span className="mt-1 font-sans text-[6.5px] font-semibold tracking-[0.42em] opacity-70">DEVELOPMENT</span>
-      </div>
-    </div>
+    <svg
+      viewBox="0 0 349 90.25"
+      direction="ltr"
+      role="img"
+      aria-label="DAMA Development"
+      className={`h-10 w-auto shrink-0 ${textColor}`}
+    >
+      {/*
+        Mark traced from the brand file: every curve shares one centre, the
+        top-left corner of the base bar (0, 67.5). Outer radius = bar width.
+      */}
+      <path fill="currentColor" d="M22.9 0.08A71.2 71.2 0 0 1 71.2 67.5V90.25H0V67.5H48.4A48.4 48.4 0 0 0 22.9 24.86Z" />
+      <path fill="currentColor" d="M0 19.1A48.4 48.4 0 0 1 22.3 24.54V50H0Z" />
+      {/* Wordmark: DAMA sits on the bar's top line, DEVELOPMENT on its bottom line, both 238 wide. */}
+      <g fill="currentColor" style={{ fontFamily: "var(--font-logo), Montserrat, sans-serif" }}>
+        <text x="111" y="67.5" fontSize="82.3" textLength="238" lengthAdjust="spacing">
+          DAMA
+        </text>
+        <text x="111.5" y="90.25" fontSize="19.1" textLength="236.5" lengthAdjust="spacing">
+          DEVELOPMENT
+        </text>
+      </g>
+    </svg>
   );
 }
 

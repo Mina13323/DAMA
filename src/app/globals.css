@@ -37,6 +37,20 @@ html[lang="ar"] {
   --font-heading: var(--font-plex-arabic);
 }
 
+/*
+  Layout units for the mockup-matched home sections (lg and up). The
+  reference mockup is drawn on a 100-unit-wide frame that fills the screen.
+    --u   1/100 of the screen width: horizontal positions and widths.
+    --hu  the hero's vertical unit. The mockup hero is 69.5 units tall, so
+          on wide, short screens --hu shrinks to keep the whole hero on
+          screen (never below 0.6vw); the hero then spreads across the
+          width instead of growing taller.
+*/
+:root {
+  --u: 1vw;
+  --hu: max(0.6vw, min(1vw, calc(100svh / 69.5)));
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;

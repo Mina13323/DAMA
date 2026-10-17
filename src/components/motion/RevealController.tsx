@@ -7,6 +7,27 @@ import { useEffect } from "react";
 const maskedTypes = new Set(["wipe", "diag", "organic"]);
 const SELECTOR = "[data-reveal]:not(.is-in)";
 
+/** React tags each DOM node it has hydrated with an internal `__reactFiber$…` key. */
+const isHydrated = (el: Element) => Object.keys(el).some((k) => k.startsWith("__reactFiber$"));
+const pending = new WeakSet<Element>();
+
+/**
+ * Adds `.is-in`, but only once React has hydrated the element: the page segment
+ * can hydrate after this controller's effect runs (it sits behind loading.tsx's
+ * Suspense boundary), and a class added before then is a hydration mismatch.
+ * Falls back to revealing anyway after ~2s so content can never stay hidden.
+ */
+function reveal(el: HTMLElement, tries = 0) {
+  if (isHydrated(el) || tries >= 40) {
+    pending.delete(el);
+    el.classList.add("is-in");
+    return;
+  }
+  if (tries === 0 && pending.has(el)) return;
+  pending.add(el);
+  setTimeout(() => reveal(el, tries + 1), 50);
+}
+
 /**
  * Boots the CSS reveal system: observes every [data-reveal] element and adds
  * `.is-in` once it enters the viewport (one-shot, no re-renders). Elements
@@ -20,7 +41,7 @@ export function RevealController() {
     root.classList.add("reveal-ready");
 
     if (!root.classList.contains("reveal-on") || !("IntersectionObserver" in window)) {
-      const revealAll = () => document.querySelectorAll(SELECTOR).forEach((el) => el.classList.add("is-in"));
+      const revealAll = () => document.querySelectorAll<HTMLElement>(SELECTOR).forEach((el) => reveal(el));
       revealAll();
       const mo = new MutationObserver(revealAll);
       mo.observe(document.body, { childList: true, subtree: true });
@@ -33,7 +54,7 @@ export function RevealController() {
       (entries) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
-          watched.get(entry.target)?.forEach((el) => el.classList.add("is-in"));
+          watched.get(entry.target)?.forEach((el) => reveal(el));
           watched.delete(entry.target);
           io.unobserve(entry.target);
         }

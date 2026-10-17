@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Gilda_Display, IBM_Plex_Sans_Arabic, Manrope } from "next/font/google";
+import { Gilda_Display, IBM_Plex_Sans_Arabic, Manrope, Montserrat } from "next/font/google";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/Footer";
@@ -11,6 +11,8 @@ import "../globals.css";
 
 const body = Manrope({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 const heading = Gilda_Display({ subsets: ["latin"], weight: "400", variable: "--font-heading", display: "swap" });
+/** Wordmark face of the DAMA logo. */
+const logo = Montserrat({ subsets: ["latin"], weight: "400", variable: "--font-logo", display: "swap" });
 const arabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
   weight: ["400", "500", "600", "700"],
@@ -55,7 +57,7 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={dict.dir}
-      className={`${body.variable} ${heading.variable} ${arabic.variable}`}
+      className={`${body.variable} ${heading.variable} ${logo.variable} ${arabic.variable}`}
       suppressHydrationWarning
     >
       <head>
