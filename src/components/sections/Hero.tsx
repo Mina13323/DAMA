@@ -2,121 +2,147 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
-import { ArrowRight, Search, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import type { Dictionary, Locale } from "@/content";
 import { images } from "@/content/site";
-import { ButtonLink } from "../ui";
-import { Lines } from "../motion/Lines";
 
 export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const t = dict.hero;
-  const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState("");
+  const [activeSlide, setActiveSlide] = useState(1);
+  const totalSlides = 3;
 
-  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/${locale}/projects?q=${encodeURIComponent(searchQuery.trim())}`);
-    } else {
-      router.push(`/${locale}/projects`);
-    }
-  };
+  const nextSlide = () => setActiveSlide((prev) => (prev % totalSlides) + 1);
+  const prevSlide = () => setActiveSlide((prev) => (prev === 1 ? totalSlides : prev - 1));
 
   return (
-    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-gradient-to-b from-[#8bbde6]/30 via-[#eaf4fb]/60 via-40% to-white pb-20 pt-32 sm:pb-28 sm:pt-40 lg:pb-36 lg:pt-44">
-      {/* Decorative ambient atmospheric glow */}
+    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-[#FBFBFA] pb-16 pt-32 sm:pb-24 sm:pt-40 lg:pb-28 lg:pt-44">
+      {/* Subtle background ambient warmth */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 start-1/2 -z-10 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-gradient-to-b from-[#8bbde6]/40 via-[#eaf4fb]/50 to-transparent blur-3xl rtl:translate-x-1/2"
+        className="pointer-events-none absolute -top-40 start-1/2 -z-20 h-[600px] w-[1000px] -translate-x-1/2 rounded-full bg-gradient-to-b from-[#FDF2F2]/80 via-white/50 to-transparent blur-3xl rtl:translate-x-1/2"
       />
 
-      <div className="container-x flex flex-col items-center text-center">
-        {/* Eyebrow Pill Badge */}
-        <div className="enter-up inline-flex items-center gap-2 rounded-full border border-[#8bbde6]/50 bg-white/90 px-4 py-1.5 shadow-2xs backdrop-blur-md" style={{ animationDelay: "100ms" }}>
-          <Sparkles aria-hidden className="size-3.5 text-[#477da9]" />
-          <span className="text-[11px] font-semibold tracking-[0.24em] text-[#18344a] uppercase rtl:tracking-normal">
-            {t.eyebrow}
-          </span>
-        </div>
+      <div className="container-x">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14 xl:gap-16">
+          {/* Left Column: Editorial Headline & Actions */}
+          <div className="lg:col-span-6 xl:col-span-6">
+            {/* Red Eyebrow with leading and trailing dashes */}
+            <div className="enter-fade flex items-center gap-2 text-[#C51E28]" style={{ animationDelay: "100ms" }}>
+              <span className="h-px w-5 bg-[#C51E28]" aria-hidden />
+              <p className="text-[11px] font-bold tracking-[0.22em] uppercase rtl:tracking-normal">
+                {t.eyebrow}
+              </p>
+              <span className="h-px w-5 bg-[#C51E28]" aria-hidden />
+            </div>
 
-        {/* Centered Editorial Display Heading */}
-        <div className="mt-6 max-w-4xl">
-          <Lines
-            as="h1"
-            id="hero-title"
-            mode="enter"
-            lines={t.titleLines}
-            className="heading-xl text-3xl font-light tracking-tight text-[#15191d] sm:text-5xl md:text-6xl lg:text-7xl"
-          />
-        </div>
+            {/* Display Headline */}
+            <h1
+              id="hero-title"
+              className="enter-line mt-6 font-display text-[clamp(2.75rem,5.2vw,4.75rem)] font-normal leading-[1.06] tracking-tight text-[#14171A]"
+              style={{ animationDelay: "200ms" }}
+            >
+              <span className="block text-[#14171A]">{t.titleLines[0]}</span>
+              <span className="mt-1 block italic font-normal text-[#C51E28]">
+                {t.titleLines[1]?.replace(/\*/g, "")}
+              </span>
+            </h1>
 
-        {/* Supporting Editorial Body */}
-        <p
-          className="enter-up mt-6 max-w-xl text-[15px] font-light leading-relaxed text-[#626b73] sm:text-lg"
-          style={{ animationDelay: "450ms" }}
-        >
-          {t.body}
-        </p>
+            {/* Supporting Paragraph */}
+            <p
+              className="enter-up mt-6 max-w-lg text-[15px] font-normal leading-relaxed text-[#687076] sm:text-[16.5px]"
+              style={{ animationDelay: "380ms" }}
+            >
+              {t.body}
+            </p>
 
-        {/* Centered Pill Action Buttons */}
-        <div className="enter-up mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-5" style={{ animationDelay: "600ms" }}>
-          <ButtonLink href={`/${locale}/projects`} variant="dark" className="!px-8 !py-3.5 !text-[13.5px] shadow-md hover:shadow-lg">
-            {t.cta}
-          </ButtonLink>
-          <Link
-            href={`/${locale}/about`}
-            className="group inline-flex min-h-12 items-center gap-2.5 rounded-full border border-[#e5e9ed] bg-white px-7 text-[13px] font-semibold text-[#15191d] shadow-sm transition-all duration-200 hover:border-[#477da9] hover:bg-[#f4f8fb]"
-          >
-            <span>{t.secondary}</span>
-            <ArrowRight aria-hidden className="flip-rtl size-4 transition-transform duration-200 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
-          </Link>
-        </div>
+            {/* Call to Action Buttons */}
+            <div
+              className="enter-up mt-8 flex flex-wrap items-center gap-4 sm:gap-5"
+              style={{ animationDelay: "500ms" }}
+            >
+              {/* Primary Red Pill Button with Arrow */}
+              <Link
+                href={`/${locale}/projects`}
+                className="group inline-flex min-h-12 items-center gap-3 rounded-full bg-[#C51E28] px-7 py-3.5 text-[13px] font-semibold tracking-wide text-white shadow-md transition-all duration-200 hover:bg-[#9F121A] hover:shadow-lg hover:-translate-y-0.5"
+              >
+                <span>{t.cta}</span>
+                <ArrowRight aria-hidden className="flip-rtl size-4 transition-transform duration-200 ease-soft group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
+              </Link>
 
-        {/* Centered Cantilevered Architectural Villa (Pinterest Reference Showcase) */}
-        <div className="enter-mask relative mt-12 w-full max-w-6xl overflow-hidden rounded-[28px] border border-[#e5e9ed]/90 bg-white shadow-[0_30px_70px_-20px_rgba(24,52,74,0.15)] sm:mt-16 sm:rounded-[44px]" style={{ animationDelay: "750ms" }}>
-          <div className="relative aspect-[16/10] w-full sm:aspect-[16/9]">
-            <Image
-              src={images.hero}
-              alt={t.imageAlt}
-              fill
-              priority
-              sizes="(min-width: 1280px) 1152px, 100vw"
-              className="object-cover object-center transition-transform duration-[1.2s] ease-soft hover:scale-[1.02]"
-            />
-            {/* Subtle soft gradient bottom edge transition */}
+              {/* Secondary Play Button: The DAMA Story */}
+              <Link
+                href={`/${locale}/about`}
+                className="group inline-flex min-h-12 items-center gap-3 rounded-full border border-[#ECEAE5] bg-white px-5 py-3 text-[13px] font-semibold text-[#14171A] shadow-xs transition-all duration-200 hover:border-[#C51E28] hover:bg-[#FDF2F2]"
+              >
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full border border-[#C51E28] text-[#C51E28] transition-transform duration-200 group-hover:scale-110">
+                  <Play aria-hidden className="size-2.5 fill-[#C51E28] translate-x-0.5" />
+                </span>
+                <span>{t.secondary}</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Column: Architectural Hero Showcase with Iconic Red Organic Shapes */}
+          <div className="relative lg:col-span-6 xl:col-span-6">
+            {/* Top Right Stacked Vertical Badge */}
+            <div className="absolute -top-10 end-4 z-20 hidden text-right sm:block">
+              {t.badgeLines?.map((line, idx) => (
+                <p key={idx} className="text-[9.5px] font-bold tracking-[0.24em] text-[#C51E28] uppercase opacity-90 leading-tight">
+                  {line}
+                </p>
+              ))}
+            </div>
+
+            {/* Red Accent 1: Flowing Organic Curved Red Arch behind Top-Left Corner */}
             <div
               aria-hidden
-              className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white/90 via-white/30 to-transparent sm:h-36"
+              className="pointer-events-none absolute -start-8 -top-10 -z-10 h-72 w-52 sm:h-96 sm:w-64 rounded-t-full rounded-bl-[120px] bg-[#C51E28] transition-transform duration-700 ease-soft"
             />
-          </div>
-        </div>
 
-        {/* Reference-Inspired Discovery Search Bar */}
-        <div className="enter-up relative z-10 -mt-8 w-full max-w-2xl px-4 sm:-mt-10" style={{ animationDelay: "950ms" }}>
-          <form
-            onSubmit={handleSearch}
-            className="flex items-center gap-2 rounded-full border border-[#e5e9ed] bg-white/95 p-2 shadow-[0_20px_50px_-10px_rgba(24,52,74,0.12)] backdrop-blur-md transition-all duration-200 focus-within:border-[#477da9] focus-within:ring-2 focus-within:ring-[#477da9]/20"
-          >
-            <div className="flex flex-1 items-center gap-3 ps-4">
-              <Search aria-hidden className="size-4 shrink-0 text-[#626b73]" />
-              <input
-                type="search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={locale === "ar" ? "ابحث عن المشاريع، الفيلات، الشقق..." : "Search developments, villas, residences..."}
-                className="w-full bg-transparent text-[13.5px] text-[#15191d] outline-none placeholder:text-[#626b73]/70"
-              />
+            {/* Red Accent 2: Semicircle peeking from Right Edge */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -end-6 top-1/4 -z-10 h-44 w-14 rounded-s-full bg-[#C51E28]"
+            />
+
+            {/* Main Architectural Image Card */}
+            <div className="enter-mask relative overflow-hidden rounded-[32px] sm:rounded-[40px] border border-[#ECEAE5] bg-white shadow-[0_25px_60px_-15px_rgba(20,23,26,0.12)]">
+              <div className="relative aspect-[4/5] sm:aspect-[4/4.2] w-full">
+                <Image
+                  src={images.hero}
+                  alt={t.imageAlt}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover object-center transition-transform duration-[1.2s] ease-soft hover:scale-[1.02]"
+                />
+              </div>
+
+              {/* Bottom Carousel Controls Bar: < 01 / 03 > */}
+              <div className="absolute bottom-4 end-4 z-20 flex items-center gap-3 rounded-full border border-white/60 bg-white/90 px-3.5 py-1.5 shadow-md backdrop-blur-md">
+                <button
+                  type="button"
+                  onClick={prevSlide}
+                  aria-label="Previous slide"
+                  className="flex size-7 items-center justify-center rounded-full text-[#14171A] transition-colors hover:bg-black/5"
+                >
+                  <ArrowLeft className="flip-rtl size-3.5" />
+                </button>
+                <span className="font-mono text-[11px] font-semibold text-[#14171A] tracking-wider">
+                  0{activeSlide} / 0{totalSlides}
+                </span>
+                <button
+                  type="button"
+                  onClick={nextSlide}
+                  aria-label="Next slide"
+                  className="flex size-7 items-center justify-center rounded-full text-[#14171A] transition-colors hover:bg-black/5"
+                >
+                  <ArrowRight className="flip-rtl size-3.5" />
+                </button>
+              </div>
             </div>
-            <button
-              type="submit"
-              className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-[#18344a] px-6 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#15191d] hover:shadow-md"
-            >
-              <span>{locale === "ar" ? "استكشف الآن" : "Explore"}</span>
-              <ArrowRight aria-hidden className="flip-rtl size-3.5" />
-            </button>
-          </form>
+          </div>
         </div>
       </div>
     </section>

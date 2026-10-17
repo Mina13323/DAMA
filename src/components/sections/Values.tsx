@@ -1,55 +1,81 @@
 import Image from "next/image";
-import { Gem, Leaf, MapPin, UsersRound } from "lucide-react";
 import type { Dictionary, Locale } from "@/content";
 import { images } from "@/content/site";
-import { ButtonLink, SectionIntro } from "../ui";
 import { stagger } from "../motion/Lines";
 
-const icons = [Leaf, UsersRound, Gem, MapPin];
-
-/** Composition flips here (values left, text right) to keep the scroll rhythm moving. */
-export function Values({ dict, locale }: { dict: Dictionary; locale: Locale }) {
+export function Values({ dict }: { dict: Dictionary; locale?: Locale }) {
   const t = dict.values;
-  return (
-    <section id="values" aria-labelledby="values-title" className="bg-paper">
-      <div className="container-x grid grid-cols-1 gap-12 py-20 sm:py-24 lg:grid-cols-12 lg:items-center lg:gap-10 lg:py-32">
-        <div className="lg:col-span-4 lg:col-start-9 lg:row-start-1">
-          <SectionIntro id="values-title" eyebrow={t.eyebrow} lines={t.titleLines} body={t.body}>
-            <ButtonLink href={`/${locale}/about#story`}>{t.cta}</ButtonLink>
-          </SectionIntro>
-        </div>
+  const stackedItems = t.stackedItems || ["PEOPLE", "PLACES", "COMMUNITIES", "OPPORTUNITY"];
 
-        <ul className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:col-span-8 lg:row-start-1 lg:grid-cols-4 lg:items-start">
-          {t.items.map((item, i) => {
-            const Icon = icons[i];
-            return (
-              <li
-                key={item.title}
-                data-reveal="card"
-                style={stagger(1 + i)}
-                className={i % 2 === 1 ? "lg:mt-14" : undefined}
-              >
-                <div className="group flex h-full flex-col rounded-[28px] bg-white p-3 pb-7 shadow-[0_1px_2px_rgba(21,25,29,0.04)] transition-[box-shadow,translate] duration-500 ease-soft hover:-translate-y-1.5 hover:shadow-[0_28px_56px_-32px_rgba(71,125,169,0.45)]">
-                <span className="mask-leaf relative block h-32 overflow-hidden sm:h-40">
-                  <Image
-                    src={images.values[i]}
-                    alt=""
-                    fill
-                    sizes="(min-width:1024px) 200px, 50vw"
-                    className="object-cover transition-transform duration-[1.1s] ease-soft group-hover:scale-105"
-                  />
-                </span>
-                <div className="mt-6 px-2">
-                  <Icon aria-hidden strokeWidth={1.4} className="size-6 text-deep" />
-                  <h3 className="mt-3 font-display text-[19px] leading-tight text-ink">{item.title}</h3>
-                  <span aria-hidden className="mt-3 block h-px w-8 bg-sky transition-[width] duration-500 ease-soft group-hover:w-16" />
-                  <p className="mt-3 text-[13px] leading-relaxed text-muted">{item.body}</p>
-                </div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+  return (
+    <section id="sustainability" aria-labelledby="commitment-title" className="relative bg-[#FBFBFA] py-16 sm:py-24 lg:py-32">
+      <div className="container-x">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-10 xl:gap-14">
+          {/* Left Column: Nature Arch Photo with Red Quarter-Circle Crescent Accent */}
+          <div data-reveal="card" className="relative flex justify-center lg:col-span-4">
+            {/* The Signature Red Crescent / Semi-Circle Accent */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -top-5 end-6 sm:end-12 z-10 size-24 sm:size-28 rounded-tr-full rounded-tl-full bg-[#C51E28] shadow-md rtl:-scale-x-100"
+            />
+
+            {/* Arch-shaped container */}
+            <div className="relative aspect-[3/4] w-full max-w-[320px] overflow-hidden rounded-t-full rounded-b-[24px] border border-[#ECEAE5] bg-white shadow-xs">
+              <Image
+                src={images.values[0] || images.lifestyle}
+                alt="Natural foliage and architecture"
+                fill
+                sizes="(min-width: 1024px) 30vw, 100vw"
+                className="object-cover object-center transition-transform duration-[1.2s] ease-soft hover:scale-105"
+              />
+            </div>
+          </div>
+
+          {/* Center Column: Eyebrow, Headline, Description */}
+          <div data-reveal="fade" style={stagger(1)} className="lg:col-span-5">
+            {/* Red Eyebrow with Dash */}
+            <div className="flex items-center gap-2 text-[#C51E28]">
+              <span className="h-px w-4 bg-[#C51E28]" aria-hidden />
+              <p className="text-[11px] font-bold tracking-[0.24em] uppercase rtl:tracking-normal">
+                {t.eyebrow}
+              </p>
+            </div>
+
+            {/* Headline with Red Italic Accent */}
+            <h2
+              id="commitment-title"
+              className="mt-5 font-display text-[clamp(2.2rem,3.5vw,3.25rem)] font-normal leading-[1.14] tracking-tight text-[#14171A]"
+            >
+              <span>{t.titleLines[0]} </span>
+              <span className="block mt-1 italic text-[#C51E28]">
+                {t.titleLines[1]?.replace(/\*/g, "")}
+              </span>
+            </h2>
+
+            {/* Description */}
+            <p className="mt-6 text-[15px] font-normal leading-relaxed text-[#687076] sm:text-[16px]">
+              {t.body}
+            </p>
+          </div>
+
+          {/* Right Column: Stacked Pillar Labels with Clean Dividing Rules */}
+          <div data-reveal="fade" style={stagger(2)} className="lg:col-span-3">
+            <div className="rounded-[24px] border border-[#ECEAE5] bg-white p-6 sm:p-8 shadow-2xs">
+              <ul className="flex flex-col divide-y divide-[#ECEAE5]">
+                {stackedItems.map((item, idx) => (
+                  <li
+                    key={item}
+                    className={`py-4 text-[11.5px] font-bold tracking-[0.26em] text-[#14171A] uppercase transition-colors hover:text-[#C51E28] ${
+                      idx === 0 ? "pt-0" : ""
+                    } ${idx === stackedItems.length - 1 ? "pb-0" : ""}`}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

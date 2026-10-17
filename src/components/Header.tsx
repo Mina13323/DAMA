@@ -75,49 +75,64 @@ export function Header({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           </Link>
 
           <nav aria-label={dict.a11y.primaryNav} className="hidden lg:block">
-            <ul className="flex items-center gap-7 xl:gap-9">
+            <ul className="flex items-center gap-7 xl:gap-8">
               {links.map((l) => (
                 <li key={l.label}>
                   <Link
                     href={l.href}
                     aria-current={l.active ? "page" : undefined}
-                    className="group relative py-2 text-[13px] font-medium text-ink/80 transition-colors hover:text-ink aria-[current=page]:text-ink"
+                    className="group relative py-2 text-[13px] font-medium text-[#14171A]/80 transition-colors hover:text-[#C51E28] aria-[current=page]:font-semibold aria-[current=page]:text-[#14171A]"
                   >
+                    {l.active && (
+                      <span
+                        aria-hidden
+                        className="absolute -top-3 left-1/2 h-[3px] w-6 -translate-x-1/2 rounded-full bg-[#C51E28]"
+                      />
+                    )}
                     {l.label}
-                    <span
-                      aria-hidden
-                      className={`absolute inset-x-0 -bottom-0.5 h-px origin-left bg-ink transition-transform duration-300 ease-soft rtl:origin-right ${
-                        l.active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                      }`}
-                    />
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
 
-          <div className="flex items-center gap-3 sm:gap-5">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <Link
+              href={`${base}/projects`}
+              aria-label="Search"
+              className="flex size-9 items-center justify-center rounded-full text-[#14171A]/70 transition-colors hover:bg-black/5 hover:text-[#14171A]"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4.5" aria-hidden>
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+            </Link>
+
             <Link
               href={switchHref}
               hrefLang={otherLocale}
               lang={otherLocale}
               aria-label={dict.a11y.switchLang}
-              className="flex min-h-11 items-center gap-2 rounded-full px-2 text-[13px] font-medium text-ink/80 transition-colors hover:text-ink"
+              className="flex min-h-9 items-center gap-1.5 rounded-full px-2 text-[12.5px] font-semibold text-[#14171A]/80 transition-colors hover:text-[#C51E28]"
             >
-              <Globe aria-hidden className="size-4" />
+              <Globe aria-hidden className="size-3.5" />
               <span className={otherLocale === "ar" ? "font-arabic" : ""}>{dict.langLabel}</span>
             </Link>
+
             <Link
               href={`${base}/contact`}
-              className="group hidden min-h-11 items-center gap-2.5 rounded-full border border-line bg-white px-5 text-[13px] font-semibold text-ink shadow-sm transition-colors hover:border-ink hover:bg-ink hover:text-white sm:inline-flex"
+              className="group hidden min-h-10 items-center gap-3 rounded-full bg-[#111417] py-1 ps-5 pe-1.5 text-[12.5px] font-semibold text-white shadow-xs transition-all duration-200 hover:bg-[#23292F] hover:shadow-sm sm:inline-flex"
             >
-              {dict.getInTouch}
-              <ArrowRight aria-hidden className="flip-rtl size-4" />
+              <span>{dict.getInTouch}</span>
+              <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#C51E28] text-white transition-transform duration-200 group-hover:scale-105">
+                <ArrowRight aria-hidden className="flip-rtl size-3.5" />
+              </span>
             </Link>
+
             <button
               ref={toggleRef}
               type="button"
-              className="inline-flex size-11 items-center justify-center rounded-full border border-ink/15 bg-white/70 text-ink backdrop-blur lg:hidden"
+              className="inline-flex size-10 items-center justify-center rounded-full border border-black/10 bg-white/80 text-[#14171A] backdrop-blur lg:hidden"
               aria-label={dict.a11y.openMenu}
               aria-expanded={open}
               aria-controls="mobile-menu"

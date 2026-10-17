@@ -3,19 +3,20 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import type { ButtonHTMLAttributes, ComponentProps, ReactNode } from "react";
 import { Lines, stagger } from "./motion/Lines";
 
-type Variant = "dark" | "light" | "outline" | "sky";
+type Variant = "red" | "dark" | "light" | "outline" | "sky";
 
 const variants: Record<Variant, string> = {
-  dark: "bg-olive text-white hover:bg-ink shadow-sm hover:shadow-md transition-all duration-200",
-  light: "bg-white text-ink hover:bg-sky-surface border border-line shadow-sm transition-all duration-200",
-  outline: "border border-line text-ink hover:border-deep hover:bg-sky-surface transition-all duration-200",
-  sky: "bg-sky text-olive hover:bg-deep hover:text-white shadow-sm transition-all duration-200",
+  red: "bg-[#C51E28] text-white hover:bg-[#9F121A] shadow-sm hover:shadow-md transition-all duration-200",
+  dark: "bg-[#111417] text-white hover:bg-[#262B30] shadow-sm hover:shadow-md transition-all duration-200",
+  light: "bg-white text-[#14171A] hover:bg-[#FDF2F2] border border-[#ECEAE5] shadow-xs transition-all duration-200",
+  outline: "border border-[#ECEAE5] text-[#14171A] hover:border-[#C51E28] hover:text-[#C51E28] transition-all duration-200",
+  sky: "bg-[#C51E28] text-white hover:bg-[#9F121A] shadow-sm transition-all duration-200",
 };
 
 export function ButtonLink({
   href,
   children,
-  variant = "dark",
+  variant = "red",
   className = "",
   ...rest
 }: { href: string; children: ReactNode; variant?: Variant; className?: string } & Omit<
@@ -39,7 +40,7 @@ export function ButtonLink({
 
 export function Button({
   children,
-  variant = "dark",
+  variant = "red",
   className = "",
   type = "button",
   ...rest
@@ -65,14 +66,15 @@ export function Badge({
   className = "",
 }: {
   children: ReactNode;
-  tone?: "neutral" | "sky" | "olive" | "white";
+  tone?: "neutral" | "sky" | "olive" | "white" | "red";
   className?: string;
 }) {
   const tones = {
-    neutral: "bg-paper text-ink border border-line",
-    sky: "bg-sky-soft/80 text-deep-ink border border-sky/40",
-    olive: "bg-olive text-white border border-olive",
-    white: "bg-white/95 text-ink shadow-sm backdrop-blur",
+    neutral: "bg-white text-[#14171A] border border-[#ECEAE5]",
+    sky: "bg-[#FDF2F2] text-[#C51E28] border border-[#FCA5A5]",
+    olive: "bg-[#111417] text-white border border-[#111417]",
+    white: "bg-white/95 text-[#14171A] shadow-sm backdrop-blur",
+    red: "bg-[#C51E28] text-white border border-[#C51E28]",
   };
 
   return (
@@ -117,12 +119,21 @@ export function Breadcrumbs({
 }
 
 export function Logo({ tone = "dark" }: { tone?: "dark" | "light" }) {
-  const color = tone === "dark" ? "text-ink" : "text-white";
+  const isDark = tone === "dark";
+  const textColor = isDark ? "text-[#14171A]" : "text-white";
   return (
-    <span className={`flex flex-col leading-none ${color}`} dir="ltr">
-      <span className="font-sans text-[26px] font-extrabold tracking-[0.06em]">DAMA</span>
-      <span className="mt-1 font-sans text-[7.5px] font-semibold tracking-[0.52em] opacity-70">DEVELOPMENTS</span>
-    </span>
+    <div className={`flex items-center gap-2.5 ${textColor}`} dir="ltr">
+      {/* Geometric architectural logo mark */}
+      <svg viewBox="0 0 32 32" fill="none" className="size-7 shrink-0" aria-hidden>
+        <path d="M4 26L16 6L28 26H4Z" fill="currentColor" opacity="0.9" />
+        <path d="M16 6L4 26H16V6Z" fill="currentColor" />
+        <path d="M16 14L22 26H16V14Z" fill={isDark ? "#C51E28" : "#FF6B6B"} />
+      </svg>
+      <div className="flex flex-col leading-none">
+        <span className="font-sans text-[20px] font-black tracking-[0.06em]">DAMA</span>
+        <span className="mt-0.5 font-sans text-[7.5px] font-bold tracking-[0.38em] opacity-80">DEVELOPMENTS</span>
+      </div>
+    </div>
   );
 }
 

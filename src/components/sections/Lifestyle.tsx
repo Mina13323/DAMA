@@ -1,79 +1,106 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { Dictionary, Locale } from "@/content";
 import { images } from "@/content/site";
-import { ButtonLink, SectionIntro } from "../ui";
 import { stagger } from "../motion/Lines";
-import { Parallax } from "../motion/Parallax";
-
-/* Each moment gets its own organic mask so the three read as editorial beats, not identical cards. */
-const masks = [
-  "rounded-[24px_96px_24px_24px] rtl:rounded-[96px_24px_24px_24px]",
-  "rounded-t-[999px] rounded-b-[24px]",
-  "rounded-[96px_24px_96px_24px] rtl:rounded-[24px_96px_24px_96px]",
-];
 
 export function Lifestyle({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const t = dict.lifestyle;
+
+  const cards = [
+    {
+      title: t.cards?.[0]?.title || "Built for Better Living",
+      image: images.lifestyle,
+      alt: "Lush residential courtyard with walkways and trees",
+    },
+    {
+      title: t.cards?.[1]?.title || "Thoughtful Design",
+      image: images.story,
+      alt: "Minimalist contemporary residential entrance with warm lighting",
+    },
+  ];
+
   return (
-    <section aria-labelledby="lifestyle-title" className="relative bg-paper">
-      {/* Image-led band */}
-      <div className="relative isolate overflow-hidden bg-ink">
-        <div className="absolute inset-0 -z-20">
-          <Parallax amount={7}>
-            <Image src={images.lifestyle} alt={t.imageAlt} fill sizes="100vw" className="object-cover object-[60%_center]" />
-          </Parallax>
-        </div>
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/85 via-ink/50 to-ink/25 lg:bg-gradient-to-r lg:from-ink/75 lg:via-ink/35 lg:to-transparent rtl:lg:bg-gradient-to-l"
-        />
+    <section id="lifestyle" aria-labelledby="lifestyle-title" className="relative isolate overflow-hidden bg-[#FBFBFA] py-16 sm:py-24 lg:py-32">
+      {/* Red Accent: Half-circle peeking from the far-right edge */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -end-7 top-1/2 -z-10 h-52 w-16 -translate-y-1/2 rounded-s-full bg-[#C51E28] rtl:-scale-x-100"
+      />
 
-        {/* Organic top edge flowing out of the projects section */}
-        <svg
-          aria-hidden
-          viewBox="0 0 1440 100"
-          preserveAspectRatio="none"
-          className="absolute inset-x-0 -top-px h-12 w-full text-white sm:h-20 rtl:-scale-x-100"
-        >
-          <path fill="currentColor" d="M0 0 H1440 V18 C 1120 96, 820 30, 560 58 S 140 100, 0 40 Z" />
-        </svg>
+      <div className="container-x">
+        {/* Split Header */}
+        <div className="grid items-end gap-8 lg:grid-cols-12 lg:gap-12">
+          {/* Left Column: Eyebrow and Headline */}
+          <div data-reveal="fade" className="lg:col-span-6">
+            <div className="flex items-center gap-2 text-[#C51E28]">
+              <span className="h-px w-4 bg-[#C51E28]" aria-hidden />
+              <p className="text-[11px] font-bold tracking-[0.24em] uppercase rtl:tracking-normal">
+                {t.eyebrow}
+              </p>
+            </div>
 
-        <div className="container-x flex min-h-[600px] items-end pb-36 pt-32 sm:pb-40 lg:min-h-[720px] lg:items-center lg:pb-44 lg:pt-36">
-          <div className="max-w-md">
-            <SectionIntro id="lifestyle-title" tone="light" size="xl" eyebrow={t.eyebrow} lines={t.titleLines} body={t.body}>
-              <ButtonLink href={`/${locale}#values`} variant="light">
-                {t.cta}
-              </ButtonLink>
-            </SectionIntro>
+            <h2
+              id="lifestyle-title"
+              className="mt-5 font-display text-[clamp(2.4rem,4vw,3.75rem)] font-normal leading-[1.12] tracking-tight text-[#14171A]"
+            >
+              <span>{t.titleLines[0]} </span>
+              <span className="italic text-[#C51E28]">
+                {t.titleLines[1]?.replace(/\*/g, "")}
+              </span>
+            </h2>
+          </div>
+
+          {/* Right Column: Paragraph and Link */}
+          <div data-reveal="fade" style={stagger(1)} className="lg:col-span-6 lg:pb-2">
+            <p className="max-w-xl text-[15px] font-normal leading-relaxed text-[#687076] sm:text-[16px]">
+              {t.body}
+            </p>
+            <div className="mt-5">
+              <Link
+                href={`/${locale}/projects`}
+                className="group inline-flex items-center gap-2 text-[13px] font-bold tracking-wide text-[#14171A] transition-colors hover:text-[#C51E28]"
+              >
+                <span>{t.cta}</span>
+                <ArrowRight aria-hidden className="flip-rtl size-4 transition-transform duration-200 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 text-[#C51E28]" />
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Three editorial moments, overlapping the band */}
-      <div className="container-x relative z-10 -mt-24 sm:-mt-28">
-        <ol className="grid gap-px overflow-hidden rounded-[32px] bg-line shadow-[0_40px_80px_-48px_rgba(21,25,29,0.45)] md:grid-cols-3 lg:rounded-ss-[120px]">
-          {t.themes.map((theme, i) => (
-            <li key={theme.title} className="flex flex-col bg-white p-6 sm:p-8 lg:p-10">
-              <div data-reveal="fade" style={stagger(i * 2)} className="flex items-baseline justify-between">
-                <span className="font-display text-sm text-deep" dir="ltr">
-                  {String(i + 1).padStart(2, "0")}
+        {/* 2 Large Architectural Showcase Cards */}
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:mt-16 lg:gap-8">
+          {cards.map((card, i) => (
+            <div
+              key={card.title}
+              data-reveal="card"
+              style={stagger(2 + i)}
+              className="group relative overflow-hidden rounded-[28px] sm:rounded-[36px] border border-[#ECEAE5] bg-white shadow-xs transition-all duration-300 hover:shadow-lg"
+            >
+              <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full">
+                <Image
+                  src={card.image}
+                  alt={card.alt}
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover object-center transition-transform duration-[1.2s] ease-soft group-hover:scale-105"
+                />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              </div>
+
+              {/* Floating Dark Pill Action Overlay */}
+              <div className="absolute inset-x-5 bottom-5 flex items-center justify-between gap-3 rounded-full bg-[#111417]/90 px-6 py-3 text-white backdrop-blur-md shadow-lg transition-transform duration-300 ease-soft group-hover:-translate-y-1">
+                <span className="text-[13px] font-semibold tracking-wide">
+                  {card.title}
                 </span>
-                <span aria-hidden className="h-px w-12 bg-sky" />
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-white/20 text-white transition-transform duration-200 group-hover:bg-[#C51E28]">
+                  <ArrowRight aria-hidden className="flip-rtl size-3.5" />
+                </span>
               </div>
-              <div className={`relative mt-6 h-44 overflow-hidden sm:h-52 ${masks[i]}`}>
-                <div data-reveal="organic" style={stagger(i * 2)} className="absolute inset-0">
-                  <Image src={images.lifestyleThemes[i]} alt="" fill sizes="(min-width:768px) 30vw, 90vw" className="object-cover" />
-                </div>
-              </div>
-              <h3 data-reveal="up" style={stagger(i * 2 + 1)} className="mt-7 font-display text-2xl leading-tight text-ink">
-                {theme.title}
-              </h3>
-              <p data-reveal="up" style={stagger(i * 2 + 2)} className="mt-2 text-[14px] leading-relaxed text-muted">
-                {theme.body}
-              </p>
-            </li>
+            </div>
           ))}
-        </ol>
+        </div>
       </div>
     </section>
   );

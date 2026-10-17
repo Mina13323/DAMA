@@ -1,49 +1,57 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { Dictionary, Locale } from "@/content";
 import { images } from "@/content/site";
-import { ButtonLink, SectionIntro } from "../ui";
-import { Parallax } from "../motion/Parallax";
 
-/**
- * Closing moment: horizontal image wipe on entry, slow parallax while it
- * scrolls away, and a soft curve that hands off to the footer.
- */
 export function FinalCta({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const t = dict.cta;
-  return (
-    <section aria-labelledby="cta-title" className="relative bg-white">
-      <div className="clip-step relative isolate overflow-hidden bg-deep-ink">
-        <div data-reveal="wipe" className="absolute inset-0 -z-20">
-          <div className="absolute inset-0 rtl:-scale-x-100">
-            <Parallax amount={8}>
-              <Image src={images.cta} alt={t.imageAlt} fill sizes="100vw" className="object-cover object-[center_60%]" />
-            </Parallax>
-          </div>
-        </div>
-        {/* Blue-toned veil for contrast */}
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-gradient-to-t from-[#1d3a55]/90 via-[#284d70]/65 to-[#477da9]/30 lg:bg-gradient-to-r lg:from-[#1d3a55]/85 lg:via-[#2f5f86]/45 lg:to-transparent rtl:lg:bg-gradient-to-l"
-        />
-        <div className="container-x flex min-h-[560px] items-end pb-28 pt-32 lg:min-h-[660px] lg:items-center lg:pb-32 lg:pt-36">
-          <div className="max-w-lg">
-            <SectionIntro id="cta-title" tone="light" size="xl" eyebrow={t.eyebrow} lines={t.titleLines} body={t.body} delay={2}>
-              <ButtonLink href={`/${locale}/contact`} variant="light">
-                {t.cta}
-              </ButtonLink>
-            </SectionIntro>
-          </div>
-        </div>
 
-        {/* Soft hand-off into the footer */}
-        <svg
-          aria-hidden
-          viewBox="0 0 1440 80"
-          preserveAspectRatio="none"
-          className="absolute inset-x-0 -bottom-px h-10 w-full text-white sm:h-16 rtl:-scale-x-100"
+  return (
+    <section aria-labelledby="cta-title" className="relative bg-[#FBFBFA] py-14 sm:py-20 border-t border-[#ECEAE5]">
+      <div className="container-x">
+        <div
+          data-reveal="card"
+          className="relative overflow-hidden rounded-[28px] sm:rounded-[36px] border border-[#ECEAE5] bg-white p-6 sm:p-10 lg:p-12 shadow-xs"
         >
-          <path fill="currentColor" d="M0 80 L0 50 C 360 0, 760 70, 1080 34 S 1360 10, 1440 30 L1440 80 Z" />
-        </svg>
+          <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+            {/* Left Column: Heading and Subtitle */}
+            <div className="max-w-xl">
+              <h2
+                id="cta-title"
+                className="font-display text-[clamp(2rem,3.2vw,3rem)] font-normal tracking-tight text-[#14171A] leading-tight"
+              >
+                <span>{t.titleLines[0]} </span>
+                <span className="italic text-[#C51E28]">{t.titleLines[1]?.replace(/\*/g, "")}</span>
+              </h2>
+              <p className="mt-3 text-[14px] font-normal text-[#687076] sm:text-[15.5px]">
+                {t.body}
+              </p>
+            </div>
+
+            {/* Right: Red CTA Button + Architectural Image Slice */}
+            <div className="flex items-center gap-6 sm:gap-8">
+              <Link
+                href={`/${locale}/contact`}
+                className="group inline-flex min-h-12 items-center gap-3 rounded-full bg-[#C51E28] px-8 py-3.5 text-[13px] font-semibold tracking-wide text-white shadow-md transition-all duration-200 hover:bg-[#9F121A] hover:shadow-lg hover:-translate-y-0.5"
+              >
+                <span>{t.cta}</span>
+                <ArrowRight aria-hidden className="flip-rtl size-4 transition-transform duration-200 group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
+              </Link>
+
+              {/* Architectural image slice */}
+              <div className="relative hidden h-28 w-28 overflow-hidden rounded-2xl border border-[#ECEAE5] sm:block lg:h-32 lg:w-32">
+                <Image
+                  src={images.cta}
+                  alt={t.imageAlt}
+                  fill
+                  sizes="128px"
+                  className="object-cover object-center grayscale transition-transform duration-700 ease-soft hover:scale-110"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
