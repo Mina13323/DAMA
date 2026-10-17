@@ -10,8 +10,6 @@ import type { Locale } from "./index";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const asset = (path: string) => `${basePath}${path}`;
 
-const img = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=2400&q=80`;
-
 export type ProjectSlug = "rwasin" | "dama-residence" | "dama-view";
 export type ProjectCategory = "residential" | "villas" | "apartments" | "mixed-use";
 export type FactIcon = "type" | "units" | "location" | "status" | "green" | "style";
@@ -52,24 +50,24 @@ export const projects: Project[] = [
     slug: "rwasin",
     name: "Rwasin",
     categories: ["residential", "villas", "apartments"],
-    image: asset("/images/project-rwasin.jpg"),
+    image: asset("/images/rawasin-aerial-masterplan.jpg"),
     images: {
-      overview: asset("/images/project-rwasin.jpg"),
+      overview: asset("/images/rawasin-aerial-masterplan.jpg"),
       lifestyle: [
-        img("photo-1520250497591-112f2f40a3f4"),
-        img("photo-1576013551627-0cc20b96c2a7"),
-        img("photo-1566073771259-6a8506099945"),
+        asset("/images/dama-courtyard-living.jpg"),
+        asset("/images/dama-jacaranda-hero.jpg"),
+        asset("/images/dama-lobby-entrance-c1.png"),
       ],
       gallery: [
-        img("photo-1512915922686-57c11dde9b6b"),
-        img("photo-1512917774080-9991f1c4c750"),
-        img("photo-1571896349842-33c89424de2d"),
-        img("photo-1600210492486-724fe5c67fb0"),
-        img("photo-1582268611958-ebfd161ef9cf"),
+        asset("/images/rawasin-aerial-masterplan.jpg"),
+        asset("/images/dama-jacaranda-hero.jpg"),
+        asset("/images/dama-courtyard-living.jpg"),
+        asset("/images/dama-twin-residences.png"),
+        asset("/images/dama-lobby-entrance-c1.png"),
       ],
     },
     masterPlan: {
-      image: img("photo-1600585154526-990dced4db0d"),
+      image: asset("/images/rawasin-aerial-masterplan.jpg"),
     },
     mapUrl: "https://maps.google.com/?q=New+Cairo+Egypt",
     copy: {
@@ -145,20 +143,20 @@ export const projects: Project[] = [
     slug: "dama-residence",
     name: "DAMA Residence",
     categories: ["residential", "apartments"],
-    image: asset("/images/project-residence.jpg"),
+    image: asset("/images/dama-twin-residences.png"),
     images: {
-      overview: asset("/images/project-residence.jpg"),
+      overview: asset("/images/dama-twin-residences.png"),
       lifestyle: [
-        img("photo-1560448204-e02f11c3d0e2"),
-        img("photo-1600607687939-ce8a6c25118c"),
-        img("photo-1600573472550-8090b5e0745e"),
+        asset("/images/dama-courtyard-living.jpg"),
+        asset("/images/dama-lobby-entrance-c1.png"),
+        asset("/images/dama-jacaranda-hero.jpg"),
       ],
       gallery: [
-        img("photo-1460317442991-0ec209397118"),
-        img("photo-1600047509358-9dc75507daeb"),
-        img("photo-1613545325278-f24b0cae1224"),
-        img("photo-1507089947368-19c1da9775ae"),
-        img("photo-1600047509807-ba8f99d2cdde"),
+        asset("/images/dama-twin-residences.png"),
+        asset("/images/dama-lobby-entrance-c1.png"),
+        asset("/images/dama-courtyard-living.jpg"),
+        asset("/images/rawasin-aerial-masterplan.jpg"),
+        asset("/images/dama-jacaranda-hero.jpg"),
       ],
     },
     mapUrl: "https://maps.google.com/?q=New+Cairo+Egypt",
@@ -231,20 +229,20 @@ export const projects: Project[] = [
     slug: "dama-view",
     name: "DAMA View",
     categories: ["residential", "villas"],
-    image: asset("/images/project-view.jpg"),
+    image: asset("/images/dama-jacaranda-hero.jpg"),
     images: {
-      overview: asset("/images/project-view.jpg"),
+      overview: asset("/images/dama-jacaranda-hero.jpg"),
       lifestyle: [
-        img("photo-1564013799919-ab600027ffc6"),
-        img("photo-1416331108676-a22ccb276e35"),
-        img("photo-1600607688969-a5bfcd646154"),
+        asset("/images/dama-courtyard-living.jpg"),
+        asset("/images/dama-twin-residences.png"),
+        asset("/images/dama-lobby-entrance-c1.png"),
       ],
       gallery: [
-        img("photo-1600566753190-17f0baa2a6c3"),
-        img("photo-1600585154526-990dced4db0d"),
-        img("photo-1604014237800-1c9102c219da"),
-        img("photo-1505843513577-22bb7d21e455"),
-        img("photo-1628744448840-55bdb2497bd4"),
+        asset("/images/dama-jacaranda-hero.jpg"),
+        asset("/images/rawasin-aerial-masterplan.jpg"),
+        asset("/images/dama-courtyard-living.jpg"),
+        asset("/images/dama-twin-residences.png"),
+        asset("/images/dama-lobby-entrance-c1.png"),
       ],
     },
     mapUrl: "https://maps.google.com/?q=New+Cairo+Egypt",

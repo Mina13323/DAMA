@@ -1,6 +1,7 @@
 import type { Locale } from "./index";
 
-const img = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=2400&q=80`;
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const asset = (path: string) => `${basePath}${path}`;
 
 export type NewsCategory = "project-updates" | "sustainability" | "events" | "architecture";
 
@@ -33,7 +34,7 @@ export const newsArticles: NewsArticle[] = [
     slug: "rwasin-construction-milestones-new-cairo",
     category: "project-updates",
     dateISO: "2026-10-05",
-    image: img("photo-1545324418-cc1a3fa10c00"),
+    image: asset("/images/rawasin-aerial-masterplan.jpg"),
     featured: true,
     copy: {
       en: {
@@ -104,7 +105,7 @@ export const newsArticles: NewsArticle[] = [
     slug: "dama-sustainable-design-community-living",
     category: "sustainability",
     dateISO: "2026-09-18",
-    image: img("photo-1600585154340-be6161a56a0c"),
+    image: asset("/images/dama-courtyard-living.jpg"),
     copy: {
       en: {
         title: "Designing for Life: How DAMA Integrates Nature into Contemporary Architecture",
@@ -172,7 +173,7 @@ export const newsArticles: NewsArticle[] = [
     slug: "dama-cityscape-regional-expansion",
     category: "events",
     dateISO: "2026-08-22",
-    image: img("photo-1531058020387-3be344556be6"),
+    image: asset("/images/dama-lobby-entrance-c1.png"),
     copy: {
       en: {
         title: "DAMA Showcases Next-Generation Community Living at Regional Property Summits",
@@ -210,7 +211,7 @@ export const newsArticles: NewsArticle[] = [
             heading: "حوار معماري حول التخطيط الإنساني",
             paragraphs: [
               "أدار فريق داما جلسات نقاشية تفاعلية حول تطور القاهرة الجديدة والمدن العمرانية الجديدة. وتمحور الحديث حول الحاجة إلى مجتمعات منخفضة الكثافة تتيح للعائلات الاستقرار والنمو على المدى الطويل.",
-              "واطّلع الزوار على مجسمات معمارية دقيقة لمشروع رواسين وكذلك مشروعي داما ريزيدنس وداما فيو، مع مناقشة التفاصيل الهندسية ومواد البناء مباشرة مع المعماريين."
+              "واطّلع الزوار على مجسمات معمارية دقيقة لمشروع رواسين وكذلك مشروعي داما ريزيدنس وداما فيو، مع مناقشة التفاصيل الهندسية ومواد البناء مباشرة مع المعماريين.",
             ],
             quote: "التطوير العقاري هو التزام طويل الأمد تجاه الناس. والإقبال الكبير الذي شهدناه يؤكد أن السوق يتطلع بصدق إلى مجتمعات حقيقية ومدروسة."
           }
@@ -228,7 +229,7 @@ export const newsArticles: NewsArticle[] = [
     slug: "dama-residence-architectural-preview",
     category: "architecture",
     dateISO: "2026-07-14",
-    image: img("photo-1600566753190-17f0baa2a6c3"),
+    image: asset("/images/dama-twin-residences.png"),
     copy: {
       en: {
         title: "DAMA Residence: Where Clean Geometries Meet Shaded Courtyards",

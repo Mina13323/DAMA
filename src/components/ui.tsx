@@ -102,11 +102,11 @@ export function Breadcrumbs({
             <li key={i} className="flex items-center gap-1.5 sm:gap-2">
               {i > 0 && <ChevronRight aria-hidden className="flip-rtl size-3.5 text-muted/60" />}
               {isLast || !item.href ? (
-                <span aria-current={isLast ? "page" : undefined} className="font-medium text-ink">
+                <span aria-current={isLast ? "page" : undefined} className="font-semibold text-[#14171A]">
                   {item.label}
                 </span>
               ) : (
-                <Link href={item.href} className="transition-colors hover:text-ink">
+                <Link href={item.href} className="transition-colors hover:text-[#C51E28]">
                   {item.label}
                 </Link>
               )}
@@ -174,14 +174,17 @@ export function SectionIntro({
   const lineCount = lines.length;
   return (
     <div>
-      <p data-reveal="fade" style={stagger(delay)} className={`eyebrow ${light ? "!text-white/80" : ""}`}>
-        {eyebrow}
-      </p>
+      <div data-reveal="fade" style={stagger(delay)} className={`flex items-center gap-2 ${light ? "text-white/80" : "text-[#C51E28]"}`}>
+        <span className={`h-px w-4 ${light ? "bg-white/60" : "bg-[#C51E28]"}`} aria-hidden />
+        <p className={`text-[11px] font-bold tracking-[0.24em] uppercase rtl:tracking-normal ${light ? "text-white/90" : "text-[#C51E28]"}`}>
+          {eyebrow}
+        </p>
+      </div>
       <Lines
         id={id}
         lines={lines}
         delay={delay + 1}
-        className={`${size === "xl" ? "heading-xl" : "heading-lg"} mt-4 ${light ? "text-white [&_.text-deep]:text-sky" : "text-ink"}`}
+        className={`${size === "xl" ? "heading-xl" : "heading-lg"} mt-4 font-display font-normal ${light ? "text-white" : "text-[#14171A]"}`}
       />
       {body && (
         <p

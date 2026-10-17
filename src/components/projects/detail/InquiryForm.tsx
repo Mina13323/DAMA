@@ -57,14 +57,14 @@ export function InquiryForm({ project, locale, labels }: { project: string; loca
     "aria-describedby": errors[key] ? `${id}-${key}-error` : undefined,
   });
   const input =
-    "mt-2 block w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] text-ink outline-none transition-colors duration-200 placeholder:text-muted/60 focus:border-deep aria-[invalid=true]:border-red-600";
+    "mt-2 block w-full rounded-2xl border border-[#ECEAE5] bg-[#FBFBFA] px-4 py-3 text-[15px] text-[#14171A] outline-none transition-all duration-200 placeholder:text-[#8C939B]/70 focus:border-[#C51E28] focus:bg-white focus:ring-1 focus:ring-[#C51E28] aria-[invalid=true]:border-[#C51E28]";
   const error = (key: keyof LeadErrors) =>
     errors[key] && (
-      <p id={`${id}-${key}-error`} className="mt-1.5 text-[12.5px] text-red-700">
+      <p id={`${id}-${key}-error`} className="mt-1.5 text-[12.5px] text-[#C51E28]">
         {labels.errors[key]}
       </p>
     );
-  const labelCls = "text-[13px] font-medium text-ink";
+  const labelCls = "text-[13px] font-medium text-[#14171A]";
 
   return (
     <form noValidate onSubmit={onSubmit} className="relative grid gap-5 sm:grid-cols-2">
@@ -109,7 +109,7 @@ export function InquiryForm({ project, locale, labels }: { project: string; loca
       </div>
       <div className="sm:col-span-2">
         <label htmlFor={`${id}-message`} className={labelCls}>
-          {labels.message} <span className="font-normal text-muted">({labels.optional})</span>
+          {labels.message} <span className="font-normal text-[#8C939B]">({labels.optional})</span>
         </label>
         <textarea
           {...field("message")}
@@ -131,17 +131,17 @@ export function InquiryForm({ project, locale, labels }: { project: string; loca
       </div>
 
       <div className="sm:col-span-2">
-        <label className="flex items-start gap-3 text-[13px] leading-relaxed text-muted">
+        <label className="flex items-start gap-3 text-[13px] leading-relaxed text-[#687076]">
           <input
             {...field("consent")}
             type="checkbox"
             checked={values.consent}
             onChange={(e) => set("consent", e.target.checked)}
-            className="mt-0.5 size-5 shrink-0 accent-ink"
+            className="mt-0.5 size-5 shrink-0 accent-[#C51E28]"
           />
           <span>
             {labels.consent}{" "}
-            <Link href={`/${locale}/privacy-policy`} className="text-ink underline underline-offset-4">
+            <Link href={`/${locale}/privacy-policy`} className="text-[#C51E28] underline underline-offset-4 font-medium">
               {labels.privacy}
             </Link>
             .
@@ -154,7 +154,7 @@ export function InquiryForm({ project, locale, labels }: { project: string; loca
         <button
           type="submit"
           disabled={status === "sending"}
-          className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-ink px-7 text-[13px] font-semibold text-white transition-colors duration-200 hover:bg-deep-ink disabled:opacity-60"
+          className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#C51E28] px-8 text-[13px] font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-[#9F121A] disabled:opacity-60"
         >
           {status === "sending" ? labels.sending : labels.submit}
           <ArrowRight aria-hidden className="flip-rtl size-4 transition-transform duration-200 group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />

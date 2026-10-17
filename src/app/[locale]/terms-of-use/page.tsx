@@ -36,31 +36,35 @@ export default async function TermsOfUsePage({ params }: { params: Params }) {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#FBFBFA]">
       <header className="container-x pt-32 sm:pt-40 pb-12">
         <Breadcrumbs items={breadcrumbs} />
 
-        <div className="mt-8 flex items-center gap-2.5 text-deep">
-          <FileText aria-hidden className="size-5" />
-          <span className="eyebrow">{t.hero.eyebrow}</span>
+        <div className="mt-8 flex items-center gap-3">
+          <span className="flex size-9 items-center justify-center rounded-full border border-[#C51E28]/35 bg-[#FDF2F2] text-[#C51E28]">
+            <FileText aria-hidden className="size-4" />
+          </span>
+          <span className="text-[11px] font-semibold tracking-[0.24em] text-[#C51E28] uppercase rtl:tracking-normal">
+            {t.hero.eyebrow}
+          </span>
         </div>
 
-        <h1 className="heading-xl mt-4 text-ink">
+        <h1 className="mt-4 font-serif text-[clamp(2.5rem,4.5vw,3.75rem)] font-normal text-[#14171A]">
           <span className="enter-line block">{t.hero.title}</span>
         </h1>
 
-        <p className="mt-3 text-[13px] text-muted">{t.hero.lastUpdated}</p>
+        <p className="mt-3 text-[13px] text-[#8C939B]">{t.hero.lastUpdated}</p>
       </header>
 
       <main className="container-x pb-24 sm:pb-32">
-        <div className="max-w-3xl rounded-[32px] bg-white p-8 sm:p-14 shadow-sm border border-line">
+        <div className="max-w-3xl rounded-[32px] bg-white p-8 sm:p-14 shadow-sm border border-[#ECEAE5]">
           <div className="space-y-10">
             {t.sections.map((section, idx) => (
               <section key={idx} data-reveal="up" style={stagger(idx)}>
-                <h2 className="heading-md text-ink">{section.heading}</h2>
+                <h2 className="font-serif text-[clamp(1.4rem,2.2vw,1.8rem)] font-normal text-[#14171A]">{section.heading}</h2>
                 <div className="mt-4 space-y-3">
                   {section.paragraphs.map((p, pIdx) => (
-                    <p key={pIdx} className="text-[15px] leading-relaxed text-ink/80">
+                    <p key={pIdx} className="text-[15.5px] leading-relaxed text-[#555E68]">
                       {p}
                     </p>
                   ))}
@@ -69,10 +73,10 @@ export default async function TermsOfUsePage({ params }: { params: Params }) {
             ))}
           </div>
 
-          <div className="mt-14 border-t border-line pt-8">
+          <div className="mt-14 border-t border-[#ECEAE5] pt-8">
             <Link
               href={`/${locale}`}
-              className="inline-flex min-h-11 items-center gap-2.5 rounded-full border border-line bg-white px-6 text-[13px] font-semibold text-ink shadow-sm transition-colors hover:border-ink hover:bg-ink hover:text-white"
+              className="inline-flex min-h-12 items-center gap-2.5 rounded-full border border-[#ECEAE5] bg-white px-7 text-[13px] font-semibold text-[#14171A] shadow-xs transition-colors hover:border-[#C51E28] hover:text-[#C51E28]"
             >
               <ArrowLeft aria-hidden className="flip-rtl size-4" />
               <span>{dict.pages.backHome}</span>

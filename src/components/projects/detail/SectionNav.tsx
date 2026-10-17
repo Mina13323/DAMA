@@ -31,7 +31,7 @@ export function SectionNav({ items, label }: { items: { id: string; label: strin
   }, [active]);
 
   return (
-    <nav aria-label={label} className="sticky top-[65px] z-40 border-b border-line bg-white/90 backdrop-blur-md">
+    <nav aria-label={label} className="sticky top-[65px] z-40 border-b border-[#ECEAE5] bg-white/95 backdrop-blur-md">
       <ul ref={listRef} className="no-scrollbar container-x flex gap-1 overflow-x-auto sm:gap-4">
         {items.map((item) => {
           const isActive = item.id === active;
@@ -41,14 +41,14 @@ export function SectionNav({ items, label }: { items: { id: string; label: strin
                 href={`#${item.id}`}
                 data-id={item.id}
                 aria-current={isActive ? "location" : undefined}
-                className={`relative flex min-h-12 items-center px-2 text-[12.5px] font-medium transition-colors duration-200 sm:px-1 ${
-                  isActive ? "text-ink" : "text-muted hover:text-ink"
+                className={`relative flex min-h-12 items-center px-2 text-[12.5px] transition-colors duration-200 sm:px-1 ${
+                  isActive ? "font-semibold text-[#C51E28]" : "font-medium text-[#687076] hover:text-[#14171A]"
                 }`}
               >
                 {item.label}
                 <span
                   aria-hidden
-                  className={`absolute inset-x-2 -bottom-px h-0.5 origin-center bg-ink transition-transform duration-300 ease-soft sm:inset-x-1 ${
+                  className={`absolute inset-x-2 -bottom-px h-0.5 origin-center bg-[#C51E28] transition-transform duration-300 ease-soft sm:inset-x-1 ${
                     isActive ? "scale-x-100" : "scale-x-0"
                   }`}
                 />

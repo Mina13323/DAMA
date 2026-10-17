@@ -13,7 +13,7 @@ import { stagger } from "../motion/Lines";
 export function Leadership({ dict }: { dict: Dictionary }) {
   const t = dict.about.leadership;
   return (
-    <section id="leadership" aria-labelledby="leadership-title" className="relative isolate overflow-hidden bg-[#18344a] text-white">
+    <section id="leadership" aria-labelledby="leadership-title" className="relative isolate overflow-hidden bg-[#111417] text-white">
       <div className="container-x grid grid-cols-1 gap-12 py-20 sm:py-24 lg:grid-cols-12 lg:items-center lg:gap-8 lg:py-28">
         <div className="lg:col-span-4">
           <SectionIntro id="leadership-title" tone="light" eyebrow={t.eyebrow} lines={t.titleLines} body={t.body} />
@@ -24,7 +24,7 @@ export function Leadership({ dict }: { dict: Dictionary }) {
             const role = t.roles[person.role];
             return (
               <li key={person.role} data-reveal="card" style={stagger(2 + i * 2)}>
-                <article className="flex h-full flex-col overflow-hidden rounded-[24px] border border-white/15 bg-white text-[#15191d] sm:flex-row shadow-md">
+                <article className="flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-white text-[#14171A] sm:flex-row shadow-lg">
                   {/* Portrait */}
                   <div className="relative aspect-[4/3] shrink-0 overflow-hidden sm:aspect-auto sm:min-h-72 sm:w-[46%]">
                     <div data-reveal="wipe" style={stagger(2 + i * 2)} className="absolute inset-0">
@@ -37,8 +37,8 @@ export function Leadership({ dict }: { dict: Dictionary }) {
                           className="object-cover object-top"
                         />
                       ) : (
-                        <div className="flex h-full flex-col items-center justify-center gap-3 bg-gradient-to-b from-[#2a4e6e] to-[#18344a] text-white/70">
-                          <UserRound aria-hidden strokeWidth={0.8} className="size-20 text-[#8bbde6]" />
+                        <div className="flex h-full flex-col items-center justify-center gap-3 bg-[#1B2127] text-white/70">
+                          <UserRound aria-hidden strokeWidth={0.8} className="size-20 text-[#C51E28]" />
                           <span className="max-w-[10rem] text-center text-[10px] font-semibold tracking-wider uppercase rtl:text-xs rtl:tracking-normal">
                             {t.portraitPending}
                           </span>

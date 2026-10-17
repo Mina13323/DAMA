@@ -1,10 +1,10 @@
 import { Fragment, type CSSProperties, type ElementType } from "react";
 
-/** Renders "*accent*" segments in the brand blue. */
+/** Renders "*accent*" segments in signature red italic serif. */
 export function Accent({ text }: { text: string }) {
   return text.split(/(\*[^*]+\*)/).map((part, i) =>
     part.startsWith("*") && part.endsWith("*") ? (
-      <span key={i} className="text-deep">
+      <span key={i} className="text-[#C51E28] italic font-serif">
         {part.slice(1, -1)}
       </span>
     ) : (

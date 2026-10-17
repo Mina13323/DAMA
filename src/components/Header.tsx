@@ -150,32 +150,32 @@ export function Header({ dict, locale }: { dict: Dictionary; locale: Locale }) {
         aria-modal="true"
         aria-label={dict.a11y.primaryNav}
         hidden={!open}
-        className="fixed inset-0 z-[70] flex flex-col bg-gradient-to-b from-sky-soft via-white to-white lg:hidden"
+        className="fixed inset-0 z-[70] flex flex-col bg-[#FBFBFA] lg:hidden"
       >
-        <div className="container-x flex items-center justify-between py-5">
+        <div className="container-x flex items-center justify-between py-5 border-b border-[#ECEAE5]">
           <Logo />
           <button
             ref={closeRef}
             type="button"
             onClick={() => setOpen(false)}
             aria-label={dict.a11y.closeMenu}
-            className="inline-flex size-11 items-center justify-center rounded-full border border-ink/15 bg-white text-ink"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-[#ECEAE5] bg-white text-[#14171A] hover:border-[#C51E28] hover:text-[#C51E28]"
           >
             <X aria-hidden className="size-5" />
           </button>
         </div>
         <nav aria-label={dict.a11y.primaryNav} className="container-x mt-6 flex-1 overflow-y-auto">
-          <ul className="divide-y divide-line border-y border-line">
+          <ul className="divide-y divide-[#ECEAE5] border-y border-[#ECEAE5]">
             {links.map((l) => (
               <li key={l.label}>
                 <Link
                   href={l.href}
                   onClick={() => setOpen(false)}
                   aria-current={l.active ? "page" : undefined}
-                  className="flex min-h-14 items-center justify-between py-3 font-display text-2xl text-ink aria-[current=page]:text-deep"
+                  className="flex min-h-14 items-center justify-between py-3 font-serif text-2xl text-[#14171A] aria-[current=page]:text-[#C51E28] aria-[current=page]:font-medium"
                 >
                   {l.label}
-                  <ArrowRight aria-hidden className="flip-rtl size-5 text-muted" />
+                  <ArrowRight aria-hidden className="flip-rtl size-5 text-[#8C939B]" />
                 </Link>
               </li>
             ))}
@@ -185,7 +185,7 @@ export function Header({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           <Link
             href={`${base}/contact`}
             onClick={() => setOpen(false)}
-            className="flex min-h-12 w-full items-center justify-center gap-3 rounded-full bg-ink text-sm font-semibold text-white"
+            className="flex min-h-12 w-full items-center justify-center gap-3 rounded-full bg-[#C51E28] text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#9F121A]"
           >
             {dict.getInTouch}
             <ArrowRight aria-hidden className="flip-rtl size-4" />

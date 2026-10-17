@@ -46,14 +46,17 @@ export function ProjectGallery({ images, name, labels }: { images: string[]; nam
     "inline-flex size-12 items-center justify-center rounded-full border border-white/30 text-white transition-colors duration-200 hover:bg-white hover:text-ink";
 
   return (
-    <section id="gallery" aria-labelledby="gallery-title" className="scroll-mt-36 bg-white border-t border-[#e5e9ed]">
+    <section id="gallery" aria-labelledby="gallery-title" className="scroll-mt-36 bg-[#FBFBFA] border-t border-[#ECEAE5]">
       <div className="container-x py-20 sm:py-24 lg:py-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <p data-reveal="fade" className="eyebrow">
-              {labels.eyebrow}
-            </p>
-            <Lines id="gallery-title" lines={labels.titleLines} delay={1} className="heading-lg mt-4 text-ink" />
+            <div data-reveal="fade" className="flex items-center gap-3">
+              <span className="h-[2px] w-4 rounded-full bg-[#C51E28]" aria-hidden />
+              <p className="text-[10.5px] font-medium tracking-[0.28em] text-[#687076] uppercase rtl:tracking-normal">
+                {labels.eyebrow}
+              </p>
+            </div>
+            <Lines id="gallery-title" lines={labels.titleLines} delay={1} className="font-serif text-[clamp(2.2rem,4vw,3.25rem)] font-normal leading-tight text-[#14171A] mt-4" />
           </div>
         </div>
 
@@ -67,7 +70,7 @@ export function ProjectGallery({ images, name, labels }: { images: string[]; nam
                   setOpen(i);
                 }}
                 aria-label={fill(labels.open, { n: i + 1, total })}
-                className="group relative block size-full overflow-hidden rounded-[20px]"
+                className="group relative block size-full overflow-hidden rounded-[24px] border border-[#ECEAE5] shadow-xs"
               >
                 <div data-reveal="zoom" style={stagger(i)} className="absolute inset-0">
                   <Image
@@ -80,7 +83,7 @@ export function ProjectGallery({ images, name, labels }: { images: string[]; nam
                 </div>
                 <span
                   aria-hidden
-                  className="absolute bottom-3 end-3 inline-flex size-9 items-center justify-center rounded-full bg-white/85 text-ink opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+                  className="absolute bottom-3 end-3 inline-flex size-9 items-center justify-center rounded-full bg-[#C51E28] text-white opacity-0 shadow-md transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
                 >
                   <Expand className="size-4" />
                 </span>

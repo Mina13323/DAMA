@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Sparkles } from "lucide-react";
 import { Lines } from "@/components/motion/Lines";
 import { NewsBrowser } from "@/components/news/NewsBrowser";
 import { getDictionary, locales, type Locale } from "@/content";
@@ -37,29 +36,42 @@ export default async function NewsPage({ params }: { params: Params }) {
   const t = dict.newsPage;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#FBFBFA]">
       {/* Hero */}
-      <section aria-labelledby="news-hero-title" className="relative isolate overflow-hidden bg-gradient-to-b from-[#8bbde6]/30 via-[#eaf4fb]/50 via-40% to-white pb-16 pt-32 sm:pb-20 sm:pt-40 lg:pb-24 lg:pt-44">
+      <section aria-labelledby="news-hero-title" className="relative isolate overflow-hidden bg-[#FBFBFA] pb-16 pt-32 sm:pb-20 sm:pt-40 lg:pb-24 lg:pt-44">
+        {/* Soft atmospheric glow */}
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-40 start-1/2 -z-10 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-gradient-to-b from-[#8bbde6]/35 via-[#eaf4fb]/45 to-transparent blur-3xl rtl:translate-x-1/2"
+          className="pointer-events-none absolute -top-40 start-1/2 -z-10 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-gradient-to-b from-[#F2ECE4]/70 via-[#FBFBFA]/60 to-transparent blur-3xl rtl:translate-x-1/2"
         />
+
+        {/* Decorative red organic arch drop */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-10 end-10 -z-10 h-72 w-52 rounded-t-full rounded-bl-[140px] bg-gradient-to-b from-[#C51E28] to-[#9F121A] opacity-90 hidden lg:block shadow-lg"
+        />
+        {/* Soft stone arch accent */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-8 start-8 -z-10 h-40 w-24 rounded-full bg-[#EDEBE5]/80"
+        />
+
         <div className="container-x">
           <div className="max-w-2xl">
-            <div className="enter-up inline-flex items-center gap-2 rounded-full border border-[#8bbde6]/50 bg-white/90 px-4 py-1.5 shadow-2xs backdrop-blur-md" style={{ animationDelay: "100ms" }}>
-              <Sparkles aria-hidden className="size-3.5 text-[#477da9]" />
-              <span className="text-[11px] font-semibold tracking-[0.24em] text-[#18344a] uppercase rtl:tracking-normal">
+            <div className="enter-up flex items-center gap-3">
+              <span className="h-[2px] w-5 rounded-full bg-[#C51E28]" aria-hidden />
+              <p className="text-[10.5px] font-medium tracking-[0.28em] text-[#687076] uppercase rtl:tracking-normal">
                 {t.hero.eyebrow}
-              </span>
+              </p>
             </div>
             <Lines
               as="h1"
               id="news-hero-title"
               mode="enter"
               lines={t.hero.titleLines}
-              className="heading-xl mt-6 text-3xl font-light tracking-tight text-[#15191d] sm:text-5xl lg:text-6xl"
+              className="mt-6 font-serif text-[clamp(2.75rem,5.5vw,4.5rem)] font-normal leading-[1.08] tracking-tight text-[#14171A]"
             />
-            <p className="enter-up mt-6 max-w-xl text-[15px] font-light leading-relaxed text-[#626b73] sm:text-lg" style={{ animationDelay: "500ms" }}>
+            <p className="enter-up mt-6 max-w-xl text-[16px] font-normal leading-relaxed text-[#555E68] sm:text-lg" style={{ animationDelay: "500ms" }}>
               {t.hero.body}
             </p>
           </div>
@@ -67,7 +79,7 @@ export default async function NewsPage({ params }: { params: Params }) {
       </section>
 
       {/* Stories Browser */}
-      <div className="bg-white">
+      <div className="bg-[#FBFBFA]">
         <NewsBrowser articles={articles} locale={locale} labels={t} />
       </div>
     </div>

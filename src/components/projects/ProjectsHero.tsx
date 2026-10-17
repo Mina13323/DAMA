@@ -1,46 +1,58 @@
 import Image from "next/image";
 import type { Dictionary } from "@/content";
 import { Lines } from "../motion/Lines";
-import { Sparkles } from "lucide-react";
 
 export function ProjectsHero({ dict, image }: { dict: Dictionary; image: string }) {
   const t = dict.projectsPage.hero;
   return (
-    <section aria-labelledby="projects-hero-title" className="relative isolate overflow-hidden bg-gradient-to-b from-[#8bbde6]/30 via-[#eaf4fb]/50 via-40% to-white pb-12 pt-32 sm:pb-20 sm:pt-40 lg:pb-24 lg:pt-44">
-      {/* Decorative ambient atmospheric glow */}
+    <section aria-labelledby="projects-hero-title" className="relative isolate overflow-hidden bg-[#FBFBFA] pb-12 pt-32 sm:pb-20 sm:pt-40 lg:pb-24 lg:pt-44">
+      {/* Decorative ambient atmospheric warmth */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 start-1/2 -z-10 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-gradient-to-b from-[#8bbde6]/35 via-[#eaf4fb]/45 to-transparent blur-3xl rtl:translate-x-1/2"
+        className="pointer-events-none absolute -top-40 start-1/2 -z-20 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-gradient-to-b from-[#FDF2F2]/80 via-white/50 to-transparent blur-3xl rtl:translate-x-1/2"
       />
 
       <div className="container-x">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-5">
-            <div className="enter-up inline-flex items-center gap-2 rounded-full border border-[#8bbde6]/50 bg-white/90 px-4 py-1.5 shadow-2xs backdrop-blur-md" style={{ animationDelay: "100ms" }}>
-              <Sparkles aria-hidden className="size-3.5 text-[#477da9]" />
-              <span className="text-[11px] font-semibold tracking-[0.24em] text-[#18344a] uppercase rtl:tracking-normal">
+            {/* Red Eyebrow with dashes */}
+            <div className="enter-fade flex items-center gap-2 text-[#C51E28]" style={{ animationDelay: "100ms" }}>
+              <span className="h-px w-5 bg-[#C51E28]" aria-hidden />
+              <p className="text-[11px] font-bold tracking-[0.22em] uppercase rtl:tracking-normal">
                 {t.eyebrow}
-              </span>
+              </p>
+              <span className="h-px w-5 bg-[#C51E28]" aria-hidden />
             </div>
 
-            <Lines as="h1" id="projects-hero-title" mode="enter" lines={t.titleLines} className="heading-xl mt-6 text-3xl font-light tracking-tight text-[#15191d] sm:text-5xl lg:text-6xl" />
+            <Lines as="h1" id="projects-hero-title" mode="enter" lines={t.titleLines} className="mt-6 font-display text-[clamp(2.5rem,4.5vw,4.25rem)] font-normal leading-[1.08] tracking-tight text-[#14171A]" />
 
-            <p className="enter-up mt-6 max-w-md text-[15px] font-light leading-relaxed text-[#626b73] sm:text-lg" style={{ animationDelay: "450ms" }}>
+            <p className="enter-up mt-6 max-w-md text-[15px] font-normal leading-relaxed text-[#687076] sm:text-[16.5px]" style={{ animationDelay: "450ms" }}>
               {t.body}
             </p>
           </div>
 
           <div className="enter-mask relative lg:col-span-7" style={{ animationDelay: "500ms" }}>
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[28px] border border-[#e5e9ed] bg-white shadow-[0_20px_50px_-15px_rgba(24,52,74,0.15)] sm:rounded-[36px]">
+            {/* Soft Organic Backdrop */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -inset-4 sm:-inset-6 -z-20 rounded-[44px] bg-[#EDEBE5]/70 backdrop-blur-xs"
+            />
+
+            {/* Top-Right Red Organic Curved Shape */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -end-5 -top-6 -z-10 h-72 w-56 sm:h-80 sm:w-72 rounded-t-full rounded-es-[140px] bg-[#C51E28] shadow-lg transition-transform duration-700 ease-soft"
+            />
+
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[28px] sm:rounded-[36px] border border-[#ECEAE5] bg-white shadow-[0_20px_50px_-15px_rgba(20,23,26,0.12)]">
               <Image
-                src={image}
+                src={image || "/images/rawasin-aerial-masterplan.jpg"}
                 alt={t.imageAlt}
                 fill
                 priority
                 sizes="(min-width: 1024px) 58vw, 100vw"
                 className="object-cover transition-transform duration-[1.2s] ease-soft hover:scale-[1.03]"
               />
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#15191d]/35 via-transparent to-transparent" />
             </div>
           </div>
         </div>

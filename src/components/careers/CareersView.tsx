@@ -110,10 +110,10 @@ export function CareersView({
   };
 
   const inputCls =
-    "mt-2 block w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] text-ink outline-none transition-colors duration-200 placeholder:text-muted/60 focus:border-deep aria-[invalid=true]:border-red-600";
+    "mt-2 block w-full rounded-2xl border border-[#ECEAE5] bg-[#FBFBFA] px-4 py-3 text-[14.5px] text-[#14171A] outline-none transition-all duration-200 placeholder:text-[#8C939B]/70 focus:border-[#C51E28] focus:bg-white focus:ring-1 focus:ring-[#C51E28] aria-[invalid=true]:border-[#C51E28]";
   const errorCls = (key: keyof LeadErrors) =>
     errors[key] && (
-      <p id={`${formId}-${key}-error`} className="mt-1.5 text-[12.5px] text-red-700">
+      <p id={`${formId}-${key}-error`} className="mt-1.5 text-[12.5px] text-[#C51E28]">
         Please fill out this field correctly.
       </p>
     );
@@ -125,11 +125,16 @@ export function CareersView({
       {/* Culture & Pillars Section */}
       <section aria-labelledby="careers-culture-title" className="container-x pb-20 sm:pb-28">
         <div className="max-w-2xl">
-          <p className="eyebrow">{labels.culture.eyebrow}</p>
-          <h2 id="careers-culture-title" className="heading-lg mt-3 text-ink">
+          <div className="flex items-center gap-3">
+            <span className="h-[2px] w-4 rounded-full bg-[#C51E28]" aria-hidden />
+            <p className="text-[10.5px] font-medium tracking-[0.28em] text-[#687076] uppercase rtl:tracking-normal">
+              {labels.culture.eyebrow}
+            </p>
+          </div>
+          <h2 id="careers-culture-title" className="mt-3 font-serif text-[clamp(2.2rem,4vw,3.25rem)] font-normal leading-tight text-[#14171A]">
             {labels.culture.titleLines.join(" ")}
           </h2>
-          <p className="mt-4 text-[15px] leading-relaxed text-muted">
+          <p className="mt-4 text-[15.5px] font-normal leading-relaxed text-[#555E68]">
             {labels.culture.body}
           </p>
         </div>
@@ -142,15 +147,15 @@ export function CareersView({
                 key={pillar.title}
                 data-reveal="card"
                 style={stagger(i)}
-                className="rounded-[24px] bg-white p-7 shadow-[0_1px_3px_rgba(21,25,29,0.04)]"
+                className="group rounded-[28px] border border-[#ECEAE5] bg-white p-7 shadow-xs transition-all hover:border-[#C51E28]/40 hover:shadow-lg"
               >
-                <span className="inline-flex size-12 items-center justify-center rounded-full bg-sky-soft text-deep-ink">
-                  <Icon aria-hidden className="size-6" />
+                <span className="flex size-12 items-center justify-center rounded-full border border-[#C51E28]/35 bg-[#FDF2F2] text-[#C51E28] transition-transform group-hover:scale-105">
+                  <Icon aria-hidden strokeWidth={1.8} className="size-5" />
                 </span>
-                <h3 className="mt-5 font-display text-[19px] leading-tight text-ink">
+                <h3 className="mt-5 font-serif text-[19px] font-normal leading-tight text-[#14171A]">
                   {pillar.title}
                 </h3>
-                <p className="mt-2.5 text-[13.5px] leading-relaxed text-muted">
+                <p className="mt-2.5 text-[13.5px] font-normal leading-relaxed text-[#555E68]">
                   {pillar.description}
                 </p>
               </div>
@@ -160,22 +165,27 @@ export function CareersView({
       </section>
 
       {/* Open Positions Section */}
-      <section id="positions" aria-labelledby="careers-positions-title" className="border-t border-line bg-paper py-20 sm:py-28">
+      <section id="positions" aria-labelledby="careers-positions-title" className="border-t border-[#ECEAE5] bg-[#FBFBFA] py-20 sm:py-28">
         <div className="container-x">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-xl">
-              <p className="eyebrow">{labels.positions.eyebrow}</p>
-              <h2 id="careers-positions-title" className="heading-lg mt-3 text-ink">
+              <div className="flex items-center gap-3">
+                <span className="h-[2px] w-4 rounded-full bg-[#C51E28]" aria-hidden />
+                <p className="text-[10.5px] font-medium tracking-[0.28em] text-[#687076] uppercase rtl:tracking-normal">
+                  {labels.positions.eyebrow}
+                </p>
+              </div>
+              <h2 id="careers-positions-title" className="mt-3 font-serif text-[clamp(2.2rem,4vw,3.25rem)] font-normal leading-tight text-[#14171A]">
                 {labels.positions.titleLines.join(" ")}
               </h2>
-              <p className="mt-4 text-[15px] leading-relaxed text-muted">
+              <p className="mt-4 text-[15.5px] font-normal leading-relaxed text-[#555E68]">
                 {labels.positions.body}
               </p>
             </div>
             <button
               type="button"
               onClick={() => openApply()}
-              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-ink/20 bg-white px-6 text-[13px] font-semibold text-ink shadow-sm transition-colors hover:bg-ink hover:text-white"
+              className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#ECEAE5] bg-white px-7 text-[13px] font-semibold text-[#14171A] shadow-xs transition-colors hover:border-[#C51E28] hover:text-[#C51E28]"
             >
               <span>{labels.applyModal.generalRole}</span>
               <ArrowRight aria-hidden className="flip-rtl size-4" />
@@ -190,29 +200,29 @@ export function CareersView({
                   key={pos.slug}
                   data-reveal="card"
                   style={stagger(idx)}
-                  className="rounded-[28px] border border-line bg-white p-7 sm:p-10 shadow-sm"
+                  className="rounded-[28px] border border-[#ECEAE5] bg-white p-7 sm:p-10 shadow-xs transition-all hover:border-[#C51E28]/40 hover:shadow-lg"
                 >
                   <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                     <div>
                       <div className="flex flex-wrap items-center gap-2.5">
-                        <span className="rounded-full bg-sky-soft px-3 py-1 text-[11px] font-semibold text-deep-ink">
+                        <span className="rounded-full bg-[#FDF2F2] border border-[#FCA5A5]/60 px-3.5 py-1 text-[11px] font-semibold text-[#C51E28]">
                           {copy.department}
                         </span>
-                        <span className="flex items-center gap-1 text-[12px] text-muted">
-                          <MapPin aria-hidden className="size-3.5" />
+                        <span className="flex items-center gap-1 text-[12px] text-[#687076]">
+                          <MapPin aria-hidden className="size-3.5 text-[#C51E28]" />
                           <span>{copy.location}</span>
                         </span>
-                        <span className="flex items-center gap-1 text-[12px] text-muted">
-                          <Briefcase aria-hidden className="size-3.5" />
+                        <span className="flex items-center gap-1 text-[12px] text-[#687076]">
+                          <Briefcase aria-hidden className="size-3.5 text-[#C51E28]" />
                           <span>{copy.type}</span>
                         </span>
                       </div>
 
-                      <h3 className="heading-md mt-4 text-ink">
+                      <h3 className="mt-4 font-serif text-2xl font-normal text-[#14171A]">
                         {copy.title}
                       </h3>
 
-                      <p className="mt-3 max-w-2xl text-[14.5px] leading-relaxed text-muted">
+                      <p className="mt-3 max-w-2xl text-[14.5px] font-normal leading-relaxed text-[#555E68]">
                         {copy.summary}
                       </p>
                     </div>
@@ -221,7 +231,7 @@ export function CareersView({
                       <button
                         type="button"
                         onClick={() => openApply(pos)}
-                        className="inline-flex min-h-11 items-center gap-2.5 rounded-full bg-olive px-6 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-ink hover:shadow-md"
+                        className="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-[#C51E28] px-7 text-[13px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#9F121A] hover:shadow-md"
                       >
                         <span>{labels.positions.applyForRole}</span>
                         <ArrowRight aria-hidden className="flip-rtl size-4" />
@@ -230,15 +240,15 @@ export function CareersView({
                   </div>
 
                   {/* Details Grid */}
-                  <div className="mt-8 grid gap-8 border-t border-line/70 pt-8 md:grid-cols-2">
+                  <div className="mt-8 grid gap-8 border-t border-[#ECEAE5] pt-8 md:grid-cols-2">
                     <div>
-                      <h4 className="text-[12.5px] font-semibold tracking-wider text-ink uppercase">
+                      <h4 className="text-[12px] font-semibold tracking-wider text-[#14171A] uppercase">
                         {labels.positions.responsibilities}
                       </h4>
                       <ul className="mt-3 space-y-2">
                         {copy.responsibilities.map((item, rIdx) => (
-                          <li key={rIdx} className="flex items-start gap-2.5 text-[13.5px] text-muted leading-relaxed">
-                            <span aria-hidden className="mt-1.5 size-1.5 shrink-0 rounded-full bg-deep" />
+                          <li key={rIdx} className="flex items-start gap-2.5 text-[13.5px] text-[#555E68] leading-relaxed">
+                            <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-[#C51E28]" />
                             <span>{item}</span>
                           </li>
                         ))}
@@ -246,13 +256,13 @@ export function CareersView({
                     </div>
 
                     <div>
-                      <h4 className="text-[12.5px] font-semibold tracking-wider text-ink uppercase">
+                      <h4 className="text-[12px] font-semibold tracking-wider text-[#14171A] uppercase">
                         {labels.positions.qualifications}
                       </h4>
                       <ul className="mt-3 space-y-2">
                         {copy.qualifications.map((item, qIdx) => (
-                          <li key={qIdx} className="flex items-start gap-2.5 text-[13.5px] text-muted leading-relaxed">
-                            <CheckCircle2 aria-hidden className="mt-0.5 size-4 shrink-0 text-deep" />
+                          <li key={qIdx} className="flex items-start gap-2.5 text-[13.5px] text-[#555E68] leading-relaxed">
+                            <CheckCircle2 aria-hidden className="mt-0.5 size-4 shrink-0 text-[#C51E28]" />
                             <span>{item}</span>
                           </li>
                         ))}
@@ -284,11 +294,16 @@ export function CareersView({
           <div className="relative z-10 max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-[32px] bg-white p-7 sm:p-10 shadow-2xl">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="eyebrow">{labels.applyModal.eyebrow}</p>
-                <h3 id={`${formId}-modal-title`} className="heading-md mt-2 text-ink">
+                <div className="flex items-center gap-3">
+                  <span className="h-[2px] w-4 rounded-full bg-[#C51E28]" aria-hidden />
+                  <p className="text-[10.5px] font-medium tracking-[0.24em] text-[#C51E28] uppercase rtl:tracking-normal">
+                    {labels.applyModal.eyebrow}
+                  </p>
+                </div>
+                <h3 id={`${formId}-modal-title`} className="mt-2 font-serif text-2xl font-normal text-[#14171A]">
                   {values.position || labels.applyModal.titleLines.join(" ")}
                 </h3>
-                <p className="mt-2 text-[14px] text-muted">
+                <p className="mt-2 text-[14px] text-[#555E68]">
                   {labels.applyModal.body}
                 </p>
               </div>
@@ -296,7 +311,7 @@ export function CareersView({
                 type="button"
                 onClick={closeApply}
                 aria-label="Close modal"
-                className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-line text-ink transition-colors hover:bg-paper"
+                className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-[#ECEAE5] text-[#14171A] transition-colors hover:border-[#C51E28] hover:text-[#C51E28]"
               >
                 <X aria-hidden className="size-5" />
               </button>
@@ -304,7 +319,7 @@ export function CareersView({
 
             <form noValidate onSubmit={onSubmit} className="mt-8 grid gap-5 sm:grid-cols-2">
               <div className="sm:col-span-2">
-                <label htmlFor={`${formId}-position`} className="text-[13px] font-medium text-ink">
+                <label htmlFor={`${formId}-position`} className="text-[13px] font-semibold text-[#14171A]">
                   {labels.applyModal.roleLabel}
                 </label>
                 <input
@@ -318,7 +333,7 @@ export function CareersView({
               </div>
 
               <div>
-                <label htmlFor={`${formId}-name`} className="text-[13px] font-medium text-ink">
+                <label htmlFor={`${formId}-name`} className="text-[13px] font-semibold text-[#14171A]">
                   {labels.applyModal.name}
                 </label>
                 <input
@@ -333,7 +348,7 @@ export function CareersView({
               </div>
 
               <div>
-                <label htmlFor={`${formId}-email`} className="text-[13px] font-medium text-ink">
+                <label htmlFor={`${formId}-email`} className="text-[13px] font-semibold text-[#14171A]">
                   {labels.applyModal.email}
                 </label>
                 <input
@@ -349,7 +364,7 @@ export function CareersView({
               </div>
 
               <div>
-                <label htmlFor={`${formId}-phone`} className="text-[13px] font-medium text-ink">
+                <label htmlFor={`${formId}-phone`} className="text-[13px] font-semibold text-[#14171A]">
                   {labels.applyModal.phone}
                 </label>
                 <input
@@ -365,7 +380,7 @@ export function CareersView({
               </div>
 
               <div>
-                <label htmlFor={`${formId}-portfolio`} className="text-[13px] font-medium text-ink">
+                <label htmlFor={`${formId}-portfolio`} className="text-[13px] font-semibold text-[#14171A]">
                   {labels.applyModal.portfolio}
                 </label>
                 <input
@@ -381,7 +396,7 @@ export function CareersView({
               </div>
 
               <div className="sm:col-span-2">
-                <label htmlFor={`${formId}-message`} className="text-[13px] font-medium text-ink">
+                <label htmlFor={`${formId}-message`} className="text-[13px] font-semibold text-[#14171A]">
                   {labels.applyModal.message}
                 </label>
                 <textarea
@@ -404,16 +419,16 @@ export function CareersView({
               </div>
 
               <div className="sm:col-span-2">
-                <label className="flex items-start gap-3 text-[13px] leading-relaxed text-muted">
+                <label className="flex items-start gap-3 text-[13px] leading-relaxed text-[#687076]">
                   <input
                     type="checkbox"
                     checked={values.consent}
                     onChange={(e) => set("consent", e.target.checked)}
-                    className="mt-0.5 size-5 shrink-0 accent-ink"
+                    className="mt-0.5 size-5 shrink-0 accent-[#C51E28]"
                   />
                   <span>
                     {labels.applyModal.consent}{" "}
-                    <Link href={`/${locale}/privacy-policy`} className="text-ink underline underline-offset-4">
+                    <Link href={`/${locale}/privacy-policy`} className="text-[#C51E28] underline underline-offset-4 font-medium">
                       {labels.applyModal.privacy}
                     </Link>
                     .
@@ -426,7 +441,7 @@ export function CareersView({
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-ink px-7 text-[13px] font-semibold text-white transition-colors hover:bg-deep-ink disabled:opacity-60"
+                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#C51E28] px-8 text-[13px] font-semibold text-white shadow-sm transition-colors hover:bg-[#9F121A] disabled:opacity-60"
                 >
                   {status === "sending" ? labels.applyModal.sending : labels.applyModal.submit}
                   <ArrowRight aria-hidden className="flip-rtl size-4" />
