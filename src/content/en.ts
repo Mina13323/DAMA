@@ -36,7 +36,7 @@ export const en = {
     secondary: "The DAMA Story",
     scroll: "Scroll",
     badgeLines: ["PEOPLE", "PLACES", "POSSIBILITIES", "A BRIGHTER TOMORROW"],
-    imageAlt: "Modern limestone residential architecture framed by a flowering jacaranda tree",
+    imageAlt: "Contemporary mid-rise residences around a reflecting pool at dusk",
   },
   stats: [
     { value: "25+", label: "YEARS OF TRUST", body: "Building stronger communities." },
@@ -69,7 +69,7 @@ export const en = {
   },
   lifestyle: {
     eyebrow: "THE LIVING EXPERIENCE",
-    titleLines: ["Life happens in", "the *details.*"],
+    titleLines: ["Life happens", "in the *details.*"],
     body: "Thoughtful spaces. A stronger community. A more balanced tomorrow. Discover a lifestyle designed around what matters most.",
     cta: "Explore Living Experience",
     imageAlt: "Landscaped courtyard surrounded by contemporary residences",

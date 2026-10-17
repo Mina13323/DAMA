@@ -8,7 +8,7 @@ export function Stats({ dict, band = false }: { dict: Dictionary; band?: boolean
   const isNumeric = (v: string) => /\d/.test(v);
 
   return (
-    <section aria-label="Key Performance Indicators" className={`relative bg-[#FBFBFA] ${band ? "py-12 border-b border-[#ECEAE5]" : "pb-16 lg:pb-24"}`}>
+    <section aria-label="Key Performance Indicators" className={`relative bg-[#FBFBFA] ${band ? "py-12 border-b border-[#ECEAE5]" : "pb-6 lg:pb-8"}`}>
       <div className="container-x">
         {/* Floating Rounded Metrics Card */}
         <div

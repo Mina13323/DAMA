@@ -15,7 +15,8 @@ const unsplash = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=2400&q=80`;
 
 export const images = {
-  hero: asset("/images/hero-dama.jpg"),
+  hero: asset("/images/project-residence.jpg"),
+  featured: asset("/images/about-dama.jpg"),
   story: asset("/images/lifestyle-interior.jpg"),
   lifestyle: asset("/images/lifestyle-terrace.jpg"),
   lifestyleThemes: [

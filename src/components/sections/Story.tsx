@@ -10,18 +10,18 @@ export function Story({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const icons = [Leaf, Users, Gem];
 
   return (
-    <section id="about" aria-labelledby="story-title" className="relative bg-[#FBFBFA] py-16 sm:py-24 lg:py-32">
+    <section id="about" aria-labelledby="story-title" className="relative bg-[#FBFBFA] py-10 sm:py-14 lg:py-16">
       <div className="container-x">
         <div className="grid items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
           {/* Left Column: Monochromatic Architectural Photo with Red Semicircle Arch */}
-          <div data-reveal="card" className="relative flex flex-col lg:col-span-4">
+          <div data-reveal="card" className="relative isolate flex flex-col lg:col-span-4">
             {/* The Signature Red Semicircle Arch Badge on the Left */}
             <div
               aria-hidden
-              className="pointer-events-none absolute -start-5 top-1/4 z-10 h-28 w-14 rounded-r-full bg-[#C51E28] shadow-md rtl:-scale-x-100"
+              className="pointer-events-none absolute -start-6 top-[18%] -z-10 h-[58%] w-1/2 rounded-s-[28px] rounded-ee-[80px] bg-[#C51E28]"
             />
 
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-t-[3.25rem] rounded-bl-[3.25rem] rounded-br-2xl border border-[#ECEAE5] bg-white shadow-xs">
+            <div className="relative isolate aspect-[3/4] w-full overflow-hidden rounded-t-[3.25rem] rounded-bl-[3.25rem] rounded-br-2xl bg-white shadow-xs">
               <Image
                 src={images.about.who}
                 alt={t.imageAlt}

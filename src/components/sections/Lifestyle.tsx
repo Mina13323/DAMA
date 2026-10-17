@@ -22,7 +22,7 @@ export function Lifestyle({ dict, locale }: { dict: Dictionary; locale: Locale }
   ];
 
   return (
-    <section id="lifestyle" aria-labelledby="lifestyle-title" className="relative isolate overflow-hidden bg-[#FBFBFA] py-16 sm:py-24 lg:py-32">
+    <section id="lifestyle" aria-labelledby="lifestyle-title" className="relative isolate overflow-hidden bg-[#FBFBFA] py-10 sm:py-14 lg:py-16">
       {/* Red Accent: Half-circle peeking from the far-right edge */}
       <div
         aria-hidden
@@ -45,15 +45,21 @@ export function Lifestyle({ dict, locale }: { dict: Dictionary; locale: Locale }
               id="lifestyle-title"
               className="mt-5 font-display text-[clamp(2.4rem,4vw,3.75rem)] font-normal leading-[1.12] tracking-tight text-[#14171A]"
             >
-              <span>{t.titleLines[0]} </span>
-              <span className="italic text-[#C51E28]">
-                {t.titleLines[1]?.replace(/\*/g, "")}
+              <span className="block">{t.titleLines[0]}</span>
+              <span className="block">
+                {t.titleLines[1]?.split(/(\*[^*]+\*)/).map((part, i) =>
+                  part.startsWith("*") ? (
+                    <span key={i} className="italic text-[#C51E28]">{part.replace(/\*/g, "")}</span>
+                  ) : (
+                    part
+                  ),
+                )}
               </span>
             </h2>
           </div>
 
           {/* Right Column: Paragraph and Link */}
-          <div data-reveal="fade" style={stagger(1)} className="lg:col-span-6 lg:pb-2">
+          <div data-reveal="fade" style={stagger(1)} className="lg:col-span-5 lg:col-start-8 lg:pb-2">
             <p className="max-w-xl text-[15px] font-normal leading-relaxed text-[#687076] sm:text-[16px]">
               {t.body}
             </p>
@@ -70,7 +76,7 @@ export function Lifestyle({ dict, locale }: { dict: Dictionary; locale: Locale }
         </div>
 
         {/* 2 Large Architectural Showcase Cards */}
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:mt-16 lg:gap-8">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:mt-12 lg:gap-8">
           {cards.map((card, i) => (
             <div
               key={card.title}
@@ -78,7 +84,7 @@ export function Lifestyle({ dict, locale }: { dict: Dictionary; locale: Locale }
               style={stagger(2 + i)}
               className="group relative overflow-hidden rounded-[28px] sm:rounded-[36px] border border-[#ECEAE5] bg-white shadow-xs transition-all duration-300 hover:shadow-xl"
             >
-              <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full">
+              <div className="relative aspect-[16/11] w-full">
                 <Image
                   src={card.image}
                   alt={card.alt}

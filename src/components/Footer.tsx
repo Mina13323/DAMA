@@ -49,7 +49,7 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
         <div className="absolute inset-0 bg-[#111417] rounded-tl-[48px] sm:rounded-tl-[72px] rtl:rounded-tl-none rtl:rounded-tr-[48px] rtl:sm:rounded-tr-[72px]" />
       </div>
 
-      <div className="container-x pb-16 pt-6 lg:pb-20 lg:pt-8">
+      <div className="container-x pb-10 pt-4 lg:pb-12 lg:pt-6">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10">
           {/* Left Column: Logo, Description, and Socials */}
           <div data-reveal="up" style={stagger(0)} className="sm:col-span-2 lg:col-span-5">
@@ -117,7 +117,7 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           </nav>
 
           {/* Contact Column */}
-          <nav data-reveal="up" style={stagger(3)} aria-label="Contact" className="lg:col-span-3">
+          <nav data-reveal="up" style={stagger(3)} aria-label="Contact" className="lg:col-span-2">
             <h3 className="text-[11.5px] font-bold tracking-wider text-white uppercase">
               {locale === "ar" ? "تواصل معنا" : "Contact"}
             </h3>
@@ -134,7 +134,7 @@ export function Footer({ dict, locale }: { dict: Dictionary; locale: Locale }) {
         </div>
 
         {/* Bottom Bar with Red Dash Accent */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-[12px] text-white/50 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-[12px] text-white/50 sm:flex-row">
           <p>© {year} DAMA Developments. {locale === "ar" ? "جميع الحقوق محفوظة." : "All rights reserved."}</p>
           <div className="flex items-center gap-2 text-[11px] font-bold tracking-[0.24em] text-white/80 uppercase">
             <span className="h-0.5 w-4 bg-[#C51E28]" aria-hidden />

@@ -16,12 +16,10 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const prevSlide = () => setActiveSlide((prev) => (prev === 1 ? totalSlides : prev - 1));
 
   return (
-    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-[#FBFBFA] pb-16 pt-32 sm:pb-24 sm:pt-40 lg:pb-28 lg:pt-44">
-      {/* Subtle background ambient warmth */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 start-1/2 -z-20 h-[600px] w-[1000px] -translate-x-1/2 rounded-full bg-gradient-to-b from-[#FDF2F2]/80 via-white/50 to-transparent blur-3xl rtl:translate-x-1/2"
-      />
+    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-[#FBFBFA] pb-12 pt-28 sm:pb-16 sm:pt-32 lg:pb-16 lg:pt-36">
+      {/* Soft stone arch panels behind the headline */}
+      <div aria-hidden className="pointer-events-none absolute inset-y-24 -start-24 -z-20 hidden w-[46%] rounded-e-[160px] bg-[#F1EFEA] lg:block" />
+      <div aria-hidden className="pointer-events-none absolute -start-10 bottom-10 -z-20 hidden h-64 w-40 rounded-t-full border border-[#E6E3DC] lg:block" />
 
       <div className="container-x">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14 xl:gap-16">
@@ -106,27 +104,27 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
               </div>
             </div>
 
-            {/* Organic Soft-Stone Backdrop Framing the Image */}
+            {/* Red Accent 1: large rounded block rising behind the top of the image */}
             <div
               aria-hidden
-              className="pointer-events-none absolute -inset-4 sm:-inset-6 -z-20 rounded-[44px] bg-[#EDEBE5]/70 backdrop-blur-xs"
+              className="pointer-events-none absolute -top-8 start-[18%] -z-10 h-64 w-[62%] rounded-t-full bg-[#C51E28]"
             />
 
-            {/* Red Accent 1: Flowing Organic Curved Red Arch behind Top-Left Corner */}
+            {/* Red Accent 2: organic leaf bleeding off the right edge */}
             <div
               aria-hidden
-              className="pointer-events-none absolute -start-8 -top-10 -z-10 h-72 w-56 sm:h-96 sm:w-68 rounded-t-full rounded-bl-[140px] bg-[#C51E28] shadow-lg transition-transform duration-700 ease-soft"
+              className="pointer-events-none absolute -end-8 top-[22%] -z-10 h-56 w-24 rounded-s-full rounded-tr-[48px] bg-[#C51E28] sm:-end-12 sm:w-28"
             />
 
-            {/* Red Accent 2: Semicircle / Vertical Pill peeking from Right Edge */}
+            {/* Red Accent 3: quarter-round tucked under the lower-left corner */}
             <div
               aria-hidden
-              className="pointer-events-none absolute -end-5 sm:-end-6 top-1/4 -z-10 h-40 w-9 sm:w-10 rounded-full bg-[#C51E28] shadow-md"
+              className="pointer-events-none absolute -bottom-6 -start-6 -z-10 size-32 rounded-es-[100px] rounded-ss-[24px] rounded-ee-[24px] bg-[#C51E28] sm:size-40"
             />
 
-            {/* Main Architectural Image Card */}
-            <div className="enter-mask relative overflow-hidden rounded-[32px] sm:rounded-[40px] border border-[#ECEAE5] bg-white shadow-[0_25px_60px_-15px_rgba(20,23,26,0.12)]">
-              <div className="relative aspect-[4/5] sm:aspect-[4/4.2] w-full">
+            {/* Main Architectural Image Card (arched top like the mockup) */}
+            <div className="enter-mask relative overflow-hidden rounded-[32px] rounded-ss-[110px] sm:rounded-[40px] sm:rounded-ss-[160px] bg-white shadow-[0_25px_60px_-15px_rgba(20,23,26,0.18)]">
+              <div className="relative aspect-[4/5] sm:aspect-[4/4.4] w-full">
                 <Image
                   src={images.hero}
                   alt={t.imageAlt}
