@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Dictionary } from "@/content";
+import { images } from "@/content/site";
 import { Lines } from "../motion/Lines";
 
 export function AboutHero({ dict }: { dict: Dictionary }) {
@@ -69,7 +70,7 @@ export function AboutHero({ dict }: { dict: Dictionary }) {
             {/* Main Architectural Image Card */}
             <div className="relative aspect-[16/11] w-full overflow-hidden rounded-[32px] sm:rounded-[40px] border border-[#ECEAE5] bg-white shadow-[0_25px_60px_-15px_rgba(20,23,26,0.12)]">
               <Image
-                src="/images/dama-twin-residences.png"
+                src={images.about.hero}
                 alt={t.imageAlt}
                 fill
                 priority

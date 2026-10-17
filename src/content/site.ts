@@ -48,13 +48,14 @@ export const images = {
   ],
   cta: asset("/images/cta-dama.jpg"),
   about: {
-    hero: asset("/images/about-dama.jpg"),
-    who: unsplash("photo-1512915922686-57c11dde9b6b"),
-    story: asset("/images/lifestyle-interior.jpg"),
-    vision: unsplash("photo-1564013799919-ab600027ffc6"),
-    mission: asset("/images/lifestyle-terrace.jpg"),
+    hero: asset("/images/dama-twin-residences.png"),
+    who: asset("/images/dama-courtyard-living.jpg"),
+    story: asset("/images/story-courtyard.webp"),
+    vision: asset("/images/dama-jacaranda-hero.jpg"),
+    mission: asset("/images/lifestyle-entrance.webp"),
     cta: asset("/images/cta-dama.jpg"),
   },
+  projectsHero: asset("/images/rawasin-aerial-masterplan.jpg"),
 } as const;
 
 // Project data lives in ./projects (single source of truth).

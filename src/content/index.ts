@@ -9,3 +9,4 @@ export const isLocale = (value: string): value is Locale => (locales as readonly
 export const getDictionary = (locale: Locale): Dictionary => (locale === "ar" ? ar : en);
 
 export type { Dictionary };
+export * from "./site";
