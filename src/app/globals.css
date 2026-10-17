@@ -1,0 +1,451 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-sky: #8bbde6;
+  --color-sky-soft: #eaf4fb;
+  --color-sky-surface: #f4f8fb;
+  --color-deep: #477da9;
+  --color-deep-ink: #18344a;
+  --color-deep-charcoal: #18344a;
+  --color-paper: #f8fafb;
+  --color-ink: #15191d;
+  --color-olive: #18344a;
+  --color-cream: #f1eee8;
+  --color-muted: #626b73;
+  --color-line: #e5e9ed;
+
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-heading), Georgia, serif;
+  --font-arabic: var(--font-plex-arabic), ui-sans-serif, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Arabic: one high-quality typeface for display + body. */
+html[lang="ar"] {
+  --font-body: var(--font-plex-arabic);
+  --font-heading: var(--font-plex-arabic);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+}
+
+/* ---------- Motion tokens ---------- */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 200ms;
+  --dur-base: 650ms;
+  --dur-image: 900ms;
+  --stagger: 90ms;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-deep);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+[id] {
+  scroll-margin-top: 88px;
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+  @media (min-width: 640px) {
+    .container-x {
+      padding-inline: 32px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-x {
+      padding-inline: 48px;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  html[lang="ar"] .eyebrow {
+    letter-spacing: 0;
+    font-size: 13px;
+  }
+
+  .heading-xl {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    font-size: clamp(2.4rem, 5.2vw, 4.25rem);
+  }
+  .heading-lg {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.005em;
+    font-size: clamp(2rem, 3.6vw, 3rem);
+  }
+  .heading-md {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+    font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  }
+  html[lang="ar"] .heading-xl,
+  html[lang="ar"] .heading-lg,
+  html[lang="ar"] .heading-md {
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0;
+  }
+}
+
+/* ---------- Shape language (mirrored for RTL) ---------- */
+
+/* Story image: pointed right edge */
+.clip-chevron {
+  clip-path: polygon(0 0, 84% 0, 100% 50%, 84% 100%, 0 100%);
+}
+[dir="rtl"] .clip-chevron {
+  clip-path: polygon(16% 0, 100% 0, 100% 100%, 16% 100%, 0 50%);
+}
+
+/* Project cards: parallelogram */
+.clip-slant {
+  clip-path: polygon(14% 0, 100% 0, 86% 100%, 0 100%);
+}
+[dir="rtl"] .clip-slant {
+  clip-path: polygon(0 0, 86% 0, 100% 100%, 14% 100%);
+}
+@media (max-width: 767px) {
+  .clip-slant,
+  [dir="rtl"] .clip-slant {
+    clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%);
+  }
+}
+
+/* Final CTA: stepped architectural top edge */
+@media (min-width: 1024px) {
+  .clip-step {
+    clip-path: polygon(0 0, 58% 0, 64% 72px, 100% 72px, 100% 100%, 0 100%);
+  }
+  [dir="rtl"] .clip-step {
+    clip-path: polygon(0 72px, 36% 72px, 42% 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Value cards: organic leaf-like image mask */
+.mask-leaf {
+  border-radius: 28px 120px 28px 28px;
+}
+[dir="rtl"] .mask-leaf {
+  border-radius: 120px 28px 28px 28px;
+}
+
+.flip-rtl {
+  transform: none;
+}
+[dir="rtl"] .flip-rtl {
+  transform: scaleX(-1);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+html[lang="ar"] .hero-title {
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+@keyframes scrollcue {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+/* =========================================================
+   Reveal system
+   - Elements opt in with data-reveal="up|fade|lines|card|wipe|diag|organic|zoom".
+   - Stagger with style="--d: <index>" (multiplied by --stagger).
+   - Hidden states only apply while <html> has .reveal-on, which an inline
+     script adds when JS runs and motion is allowed. If the controller never
+     boots, the script removes it again, so content is never stuck hidden.
+   ========================================================= */
+[data-reveal] {
+  --reveal-delay: calc(var(--d, 0) * var(--stagger));
+}
+html.reveal-on [data-reveal] {
+  transition:
+    opacity var(--dur-base) var(--ease-out) var(--reveal-delay),
+    transform var(--dur-base) var(--ease-out) var(--reveal-delay),
+    clip-path var(--dur-image) var(--ease-out) var(--reveal-delay);
+}
+html.reveal-on [data-reveal="up"]:not(.is-in) {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+}
+html.reveal-on [data-reveal="fade"]:not(.is-in) {
+  opacity: 0;
+}
+html.reveal-on [data-reveal="card"]:not(.is-in) {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+}
+
+/* Headline lines: each line rises inside a mask padded for descenders. */
+.line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.1em 0.14em;
+  margin-block: -0.1em -0.14em;
+}
+.line-inner {
+  display: block;
+}
+html.reveal-on [data-reveal="lines"] .line-inner {
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    opacity var(--dur-base) var(--ease-out);
+  transition-delay: calc((var(--d, 0) + var(--i, 0)) * var(--stagger));
+}
+html.reveal-on [data-reveal="lines"]:not(.is-in) .line-inner {
+  opacity: 0;
+  transform: translate3d(0, 45%, 0);
+}
+
+/* Image reveals (applied to an inner frame, never to a shape-clipped element) */
+html.reveal-on [data-reveal="wipe"] {
+  transition-duration: var(--dur-image);
+}
+html.reveal-on [data-reveal="wipe"]:not(.is-in) {
+  clip-path: inset(0 100% 0 0);
+  transform: scale(1.06);
+}
+html.reveal-on[dir="rtl"] [data-reveal="wipe"]:not(.is-in) {
+  clip-path: inset(0 0 0 100%);
+}
+[data-reveal="wipe"].is-in {
+  clip-path: inset(0 0 0 0);
+}
+
+html.reveal-on [data-reveal="diag"] {
+  transition-duration: var(--dur-image);
+}
+html.reveal-on [data-reveal="diag"]:not(.is-in) {
+  clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+  transform: scale(1.05);
+}
+[data-reveal="diag"].is-in {
+  clip-path: polygon(0 0, 200% 0, 0 200%, 0 0);
+}
+html.reveal-on[dir="rtl"] [data-reveal="diag"]:not(.is-in) {
+  clip-path: polygon(100% 0, 100% 0, 100% 0, 100% 0);
+}
+[dir="rtl"] [data-reveal="diag"].is-in {
+  clip-path: polygon(100% 0, -100% 0, 100% 200%, 100% 0);
+}
+
+html.reveal-on [data-reveal="organic"]:not(.is-in) {
+  clip-path: circle(0% at 30% 100%);
+}
+[data-reveal="organic"].is-in {
+  clip-path: circle(150% at 30% 100%);
+}
+
+html.reveal-on [data-reveal="zoom"] {
+  transition-duration: var(--dur-image);
+}
+html.reveal-on [data-reveal="zoom"]:not(.is-in) {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+/* ---------- Hero entrance (CSS only: runs on load, never waits for scroll) ---------- */
+@keyframes enter-fade {
+  from { opacity: 0; }
+}
+@keyframes enter-up {
+  from { opacity: 0; transform: translate3d(0, 16px, 0); }
+}
+@keyframes enter-line {
+  from { opacity: 0; transform: translate3d(0, 60%, 0); }
+}
+@keyframes enter-mask {
+  from { clip-path: inset(0 0 0 38%); transform: scale(1.06); }
+  to { clip-path: inset(0 0 0 0); transform: scale(1); }
+}
+.enter-fade { animation: enter-fade 700ms var(--ease-out) both; }
+.enter-up { animation: enter-up var(--dur-base) var(--ease-out) both; }
+.enter-line { animation: enter-line 850ms var(--ease-out) both; }
+.enter-mask { animation: enter-mask 1300ms var(--ease-out) both; }
+
+/* ---------- About page shapes ---------- */
+/* Hero image: slanted leading edge (desktop), angled top edge (mobile) */
+.clip-about-hero {
+  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+}
+@media (min-width: 1024px) {
+  .clip-about-hero {
+    clip-path: polygon(26% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  [dir="rtl"] .clip-about-hero {
+    clip-path: polygon(0 0, 74% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Story image: trailing edge cut on a diagonal */
+@media (min-width: 1024px) {
+  .clip-about-story {
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+  }
+  [dir="rtl"] .clip-about-story {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
+  }
+}
+
+/* Closing CTA: diagonal colour panel over the photograph */
+@media (min-width: 1024px) {
+  .clip-about-panel {
+    clip-path: polygon(0 0, 100% 0, 78% 100%, 0 100%);
+  }
+  [dir="rtl"] .clip-about-panel {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 22% 100%);
+  }
+}
+
+/* Organic blob masks for Vision & Mission */
+.mask-blob-a {
+  border-radius: 58% 42% 38% 62% / 52% 46% 54% 48%;
+}
+.mask-blob-b {
+  border-radius: 42% 58% 62% 38% / 46% 52% 48% 54%;
+}
+
+/* ---------- About v2 (reference-matched) ---------- */
+/* Hero: olive section-nav wedge at the trailing edge */
+.clip-wedge {
+  clip-path: polygon(34% 0, 100% 0, 100% 100%, 0 100%);
+}
+[dir="rtl"] .clip-wedge {
+  clip-path: polygon(0 0, 66% 0, 100% 100%, 0 100%);
+}
+
+/* Who We Are: image with slanted leading edge */
+@media (min-width: 1024px) {
+  .clip-lead-slant {
+    clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  [dir="rtl"] .clip-lead-slant {
+    clip-path: polygon(0 0, 84% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Vision & Mission: large organic image edges */
+@media (min-width: 1024px) {
+  .clip-organic-start {
+    clip-path: ellipse(100% 78% at 0% 52%);
+  }
+  .clip-organic-end {
+    clip-path: ellipse(100% 78% at 100% 48%);
+  }
+  [dir="rtl"] .clip-organic-start {
+    clip-path: ellipse(100% 78% at 100% 52%);
+  }
+  [dir="rtl"] .clip-organic-end {
+    clip-path: ellipse(100% 78% at 0% 48%);
+  }
+}
+
+/* Leadership: portrait with a curved trailing edge */
+@media (min-width: 640px) {
+  .clip-portrait {
+    clip-path: ellipse(100% 100% at 0% 50%);
+  }
+  [dir="rtl"] .clip-portrait {
+    clip-path: ellipse(100% 100% at 100% 50%);
+  }
+}
+
+/* Who We Are: olive pillars panel, trailing edge slanted */
+.clip-panel-trail {
+  clip-path: polygon(0 0, 72% 0, 100% 100%, 0 100%);
+}
+[dir="rtl"] .clip-panel-trail {
+  clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* ---------- Projects ---------- */
+/* Hero photograph with a sweeping curved leading edge (desktop) */
+.clip-curve-lead {
+  clip-path: ellipse(120% 100% at 100% 0%);
+}
+[dir="rtl"] .clip-curve-lead {
+  clip-path: ellipse(120% 100% at 0% 0%);
+}
+@media (min-width: 1024px) {
+  .clip-curve-lead {
+    clip-path: ellipse(100% 135% at 100% 0%);
+  }
+  [dir="rtl"] .clip-curve-lead {
+    clip-path: ellipse(100% 135% at 0% 0%);
+  }
+}
+
+/* Showcase rows: rounded outer corners, slanted inner edge */
+@media (min-width: 768px) {
+  .clip-row-end {
+    clip-path: polygon(0 0, 100% 0, 86% 100%, 0 100%);
+  }
+  .clip-row-start {
+    clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  [dir="rtl"] .clip-row-end {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 14% 100%);
+  }
+  [dir="rtl"] .clip-row-start {
+    clip-path: polygon(0 0, 86% 0, 100% 100%, 0 100%);
+  }
+}

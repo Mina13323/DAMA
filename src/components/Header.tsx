@@ -1,0 +1,183 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight, Globe, Menu, X } from "lucide-react";
+import type { Dictionary, Locale } from "@/content";
+import { Logo } from "./ui";
+
+export function Header({ dict, locale }: { dict: Dictionary; locale: Locale }) {
+  const pathname = usePathname() ?? `/${locale}`;
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  const base = `/${locale}`;
+  const isHome = pathname === base;
+  // Pages with a full-bleed hero start with a transparent header.
+  const overHero = isHome || pathname === `${base}/about` || pathname.startsWith(`${base}/projects`);
+  const solid = scrolled || !overHero;
+
+  const links = [
+    { href: base, label: dict.nav.home, active: isHome },
+    { href: `${base}/about`, label: dict.nav.about, active: pathname === `${base}/about` },
+    { href: `${base}/projects`, label: dict.nav.projects, active: pathname.startsWith(`${base}/projects`) },
+    { href: `${base}/news`, label: dict.nav.news, active: pathname.startsWith(`${base}/news`) },
+    { href: `${base}/careers`, label: dict.nav.careers, active: pathname === `${base}/careers` },
+    { href: `${base}/contact`, label: dict.nav.contact, active: pathname === `${base}/contact` },
+  ];
+
+  const otherLocale = locale === "en" ? "ar" : "en";
+  const switchHref = pathname.replace(/^\/(en|ar)/, `/${otherLocale}`);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    const toggle = toggleRef.current;
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+      toggle?.focus();
+    };
+  }, [open]);
+
+  useEffect(() => setOpen(false), [pathname]);
+
+  return (
+    <>
+      <a
+        href="#main"
+        className="sr-only z-[60] rounded-full bg-ink px-4 py-2 text-sm text-white focus:not-sr-only focus:fixed focus:start-4 focus:top-4"
+      >
+        {dict.a11y.skip}
+      </a>
+      <header
+        className={`enter-fade fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,padding] duration-500 ease-soft ${
+          solid ? "bg-white/90 py-3 shadow-[0_1px_0_var(--color-line)] backdrop-blur-md" : "py-5 lg:py-7"
+        }`}
+      >
+        <div className="container-x flex items-center justify-between gap-6">
+          <Link href={base} aria-label={dict.a11y.home} className="shrink-0">
+            <Logo />
+          </Link>
+
+          <nav aria-label={dict.a11y.primaryNav} className="hidden lg:block">
+            <ul className="flex items-center gap-7 xl:gap-9">
+              {links.map((l) => (
+                <li key={l.label}>
+                  <Link
+                    href={l.href}
+                    aria-current={l.active ? "page" : undefined}
+                    className="group relative py-2 text-[13px] font-medium text-ink/80 transition-colors hover:text-ink aria-[current=page]:text-ink"
+                  >
+                    {l.label}
+                    <span
+                      aria-hidden
+                      className={`absolute inset-x-0 -bottom-0.5 h-px origin-left bg-ink transition-transform duration-300 ease-soft rtl:origin-right ${
+                        l.active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                      }`}
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="flex items-center gap-3 sm:gap-5">
+            <Link
+              href={switchHref}
+              hrefLang={otherLocale}
+              lang={otherLocale}
+              aria-label={dict.a11y.switchLang}
+              className="flex min-h-11 items-center gap-2 rounded-full px-2 text-[13px] font-medium text-ink/80 transition-colors hover:text-ink"
+            >
+              <Globe aria-hidden className="size-4" />
+              <span className={otherLocale === "ar" ? "font-arabic" : ""}>{dict.langLabel}</span>
+            </Link>
+            <Link
+              href={`${base}/contact`}
+              className="group hidden min-h-11 items-center gap-2.5 rounded-full border border-line bg-white px-5 text-[13px] font-semibold text-ink shadow-sm transition-colors hover:border-ink hover:bg-ink hover:text-white sm:inline-flex"
+            >
+              {dict.getInTouch}
+              <ArrowRight aria-hidden className="flip-rtl size-4" />
+            </Link>
+            <button
+              ref={toggleRef}
+              type="button"
+              className="inline-flex size-11 items-center justify-center rounded-full border border-ink/15 bg-white/70 text-ink backdrop-blur lg:hidden"
+              aria-label={dict.a11y.openMenu}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              onClick={() => setOpen(true)}
+            >
+              <Menu aria-hidden className="size-5" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile navigation */}
+      <div
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label={dict.a11y.primaryNav}
+        hidden={!open}
+        className="fixed inset-0 z-[70] flex flex-col bg-gradient-to-b from-sky-soft via-white to-white lg:hidden"
+      >
+        <div className="container-x flex items-center justify-between py-5">
+          <Logo />
+          <button
+            ref={closeRef}
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label={dict.a11y.closeMenu}
+            className="inline-flex size-11 items-center justify-center rounded-full border border-ink/15 bg-white text-ink"
+          >
+            <X aria-hidden className="size-5" />
+          </button>
+        </div>
+        <nav aria-label={dict.a11y.primaryNav} className="container-x mt-6 flex-1 overflow-y-auto">
+          <ul className="divide-y divide-line border-y border-line">
+            {links.map((l) => (
+              <li key={l.label}>
+                <Link
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={l.active ? "page" : undefined}
+                  className="flex min-h-14 items-center justify-between py-3 font-display text-2xl text-ink aria-[current=page]:text-deep"
+                >
+                  {l.label}
+                  <ArrowRight aria-hidden className="flip-rtl size-5 text-muted" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className="container-x pb-8 pt-6">
+          <Link
+            href={`${base}/contact`}
+            onClick={() => setOpen(false)}
+            className="flex min-h-12 w-full items-center justify-center gap-3 rounded-full bg-ink text-sm font-semibold text-white"
+          >
+            {dict.getInTouch}
+            <ArrowRight aria-hidden className="flip-rtl size-4" />
+          </Link>
+        </div>
+      </div>
+    </>
+  );
+}
