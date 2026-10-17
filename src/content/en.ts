@@ -36,7 +36,7 @@ export const en = {
     secondary: "The DAMA Story",
     scroll: "Scroll",
     badgeLines: ["PEOPLE", "PLACES", "POSSIBILITIES", "A BRIGHTER TOMORROW"],
-    imageAlt: "Contemporary mid-rise residences around a reflecting pool at dusk",
+    imageAlt: "Sand-stone residential building with deep framed windows behind a flowering jacaranda tree",
   },
   stats: [
     { value: "25+", label: "YEARS OF TRUST", body: "Building stronger communities." },

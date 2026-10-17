@@ -123,15 +123,17 @@ export function Logo({ tone = "dark" }: { tone?: "dark" | "light" }) {
   const textColor = isDark ? "text-[#14171A]" : "text-white";
   return (
     <div className={`flex items-center gap-2.5 ${textColor}`} dir="ltr">
-      {/* Geometric architectural logo mark */}
-      <svg viewBox="0 0 32 32" fill="none" className="size-7 shrink-0" aria-hidden>
-        <path d="M4 26L16 6L28 26H4Z" fill="currentColor" opacity="0.9" />
-        <path d="M16 6L4 26H16V6Z" fill="currentColor" />
-        <path d="M16 14L22 26H16V14Z" fill={isDark ? "#C51E28" : "#FF6B6B"} />
+      {/* Architectural "D" mark: roof slope, solid bowl and a doorway notch */}
+      <svg viewBox="0 0 32 32" className="size-8 shrink-0" aria-hidden>
+        <path
+          fill="currentColor"
+          fillRule="evenodd"
+          d="M3 29V13L13 3v6h5c6.1 0 11 4.5 11 10s-4.9 10-11 10H3Zm9-7h5v7h-5v-7Z"
+        />
       </svg>
       <div className="flex flex-col leading-none">
-        <span className="font-sans text-[20px] font-black tracking-[0.06em]">DAMA</span>
-        <span className="mt-0.5 font-sans text-[7.5px] font-bold tracking-[0.38em] opacity-80">DEVELOPMENTS</span>
+        <span className="font-sans text-[21px] font-semibold tracking-[0.04em]">DAMA</span>
+        <span className="mt-1 font-sans text-[6.5px] font-semibold tracking-[0.42em] opacity-70">DEVELOPMENT</span>
       </div>
     </div>
   );

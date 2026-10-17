@@ -66,7 +66,7 @@ export function Header({ dict, locale }: { dict: Dictionary; locale: Locale }) {
       </a>
       <header
         className={`enter-fade fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,padding] duration-500 ease-soft ${
-          solid ? "bg-white/90 py-3 shadow-[0_1px_0_var(--color-line)] backdrop-blur-md" : "py-5 lg:py-7"
+          solid ? "bg-white/90 py-3 shadow-[0_1px_0_var(--color-line)] backdrop-blur-md" : "py-5 lg:py-6"
         }`}
       >
         <div className="container-x flex items-center justify-between gap-6">
@@ -75,18 +75,18 @@ export function Header({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           </Link>
 
           <nav aria-label={dict.a11y.primaryNav} className="hidden lg:block">
-            <ul className="flex items-center gap-7 xl:gap-8">
+            <ul className="flex items-center gap-8 xl:gap-10">
               {links.map((l) => (
                 <li key={l.label}>
                   <Link
                     href={l.href}
                     aria-current={l.active ? "page" : undefined}
-                    className="group relative py-2 text-[13px] font-medium text-[#14171A]/80 transition-colors hover:text-[#C51E28] aria-[current=page]:font-semibold aria-[current=page]:text-[#14171A]"
+                    className="group relative block py-2 text-[12.5px] font-medium whitespace-nowrap text-[#14171A]/70 transition-colors hover:text-[#C51E28] aria-[current=page]:font-semibold aria-[current=page]:text-[#14171A]"
                   >
                     {l.active && (
                       <span
                         aria-hidden
-                        className="absolute -top-3 left-1/2 h-[3px] w-6 -translate-x-1/2 rounded-full bg-[#C51E28]"
+                        className="absolute -bottom-1.5 left-1/2 h-[3px] w-[110%] -translate-x-1/2 rounded-full bg-[#C51E28]"
                       />
                     )}
                     {l.label}
@@ -96,7 +96,7 @@ export function Header({ dict, locale }: { dict: Dictionary; locale: Locale }) {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href={`${base}/projects`}
               aria-label="Search"
@@ -113,19 +113,18 @@ export function Header({ dict, locale }: { dict: Dictionary; locale: Locale }) {
               hrefLang={otherLocale}
               lang={otherLocale}
               aria-label={dict.a11y.switchLang}
-              className="flex min-h-9 items-center gap-1.5 rounded-full px-2 text-[12.5px] font-semibold text-[#14171A]/80 transition-colors hover:text-[#C51E28]"
+              className="flex size-9 items-center justify-center rounded-full text-[#14171A]/70 transition-colors hover:bg-black/5 hover:text-[#14171A]"
             >
-              <Globe aria-hidden className="size-3.5" />
-              <span className={otherLocale === "ar" ? "font-arabic" : ""}>{dict.langLabel}</span>
+              <Globe aria-hidden className="size-4" />
             </Link>
 
             <Link
               href={`${base}/contact`}
-              className="group hidden min-h-10 items-center gap-3 rounded-full bg-[#111417] py-1 ps-5 pe-1.5 text-[12.5px] font-semibold text-white shadow-xs transition-all duration-200 hover:bg-[#23292F] hover:shadow-sm sm:inline-flex"
+              className="group ms-2 hidden min-h-12 items-center gap-5 rounded-full bg-[#16191C] py-1.5 ps-6 pe-1.5 text-[12.5px] font-medium text-white shadow-[0_8px_20px_-8px_rgba(20,23,26,0.45)] transition-all duration-200 hover:bg-[#23292F] sm:inline-flex"
             >
               <span>{dict.getInTouch}</span>
-              <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#C51E28] text-white transition-transform duration-200 group-hover:scale-105">
-                <ArrowRight aria-hidden className="flip-rtl size-3.5" />
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[#C51E28] text-white transition-transform duration-200 group-hover:scale-105">
+                <ArrowRight aria-hidden className="flip-rtl size-4" />
               </span>
             </Link>
 
